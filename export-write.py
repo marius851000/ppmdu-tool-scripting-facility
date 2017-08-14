@@ -6,7 +6,7 @@ originalFile = "export/scripts/G01P01B.xml"
 to = ""
 
 def getWrited(original,to):
-    version = "0.0.0.1-alpha"
+    version = "0.0.0.2"
     subdir = to + original.split("/")[len(original.split("/"))-1]
     try:
         shutil.rmtree(subdir)
@@ -42,7 +42,7 @@ def getWrited(original,to):
         os.mkdir(subdir + "/" + pname)
         nsub = subdir + "/" + pname
         print(nsub)
-        temp = open(nsub + "script.pms", "w")
+        temp = open(nsub + "/script.pms", "w")
         temp.write(toCode(loop))
         temp.close()
 
