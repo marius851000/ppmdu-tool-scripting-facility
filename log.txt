@@ -1,0 +1,2 @@
+Logger initiated!
+Exception: ImportXMLGameScripts(): No script data to load to!!
