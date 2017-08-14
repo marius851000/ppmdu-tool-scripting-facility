@@ -6,7 +6,7 @@ originalFile = "export/scripts/G01P01B.xml"
 to = ""
 
 def getWrited(original,to):
-    version = "0.0.0.2"
+    version = "0.0.1.0.1"
     subdir = to + original.split("/")[len(original.split("/"))-1]
     try:
         shutil.rmtree(subdir)
@@ -118,7 +118,7 @@ def toCode(fonction):
             elif commande == "waitScreenFade":
                 rendu = rendu + deb + "waitScreenFade\n"
             elif commande == "waitScreenFadeAll":
-                rendu = rendu + deb + "waitScreenFadeAll"
+                rendu = rendu + deb + "waitScreenFadeAll\n"
             elif commande == "soundStop":
                 rendu = rendu + deb + "soundStop\n"
             elif commande == "back2SetGround":
