@@ -1,6 +1,6 @@
 from lxml import etree
 def getData(file):
-    uncompilerversion = "0.0.0.3"
+    uncompilerversion = "0.0.0.3 - debug"
     temp = open(file,"r")
     xml = temp.read()
     temp.close()
@@ -35,6 +35,7 @@ def getData(file):
             print(LSDdata)
 
         elif scriptset.tag == "ScriptSet":
+            print(scriptset)
             name = scriptset.get("name")
             #TODO : triggerTable
             #TODO : position marker
@@ -350,8 +351,247 @@ def getData(file):
                                "svar" : command.get("svar")}
                         funcl.append(obj)
                         #print(obj)
+                    elif tag == "message_Notice":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "messageNotice",
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "supervision_ExecuteStation":
+                        obj = {"commande" : "supervisionExecuteStation",
+                               "levelid" : command.get("levelid"),
+                               "constref" : command.get("constref"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "Hold":
+                        obj = {"commande" : "hold"}
+                        funcl.append(obj)
+                    elif tag == "BranchBit":
+                        obj = {"commande" : "branchBit",
+                               "svar" : command.get("svar"),
+                               "param_1" : command.get("param_1"),
+                               "tolabel" : command.get("tolabel")}
+                        funcl.append(obj)
+                    elif tag == "BranchScenarioBefore":
+                        obj = {"commande" : "branchScenarioBefore",
+                               "svar" : command.get("svar"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "tolabel" : command.get("tolabel")}
+                        funcl.append(obj)
+                    elif tag == "BranchScenarioNow":
+                        obj = {"commande" : "BranchScenarioNow",
+                               "svar" : command.get("svar"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "tolabel" : command.get("tolabel")}
+                        funcl.append(obj)
+                    elif tag == "ProcessSpecial":
+                        obj = {"commande" : "processSpecial",
+                               "procspec" : command.get("procspec"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "supervision_ExecuteStationSub":
+                        obj = {"commande" : "supervisionExecuteStationSub",
+                               "levelid" : command.get("levelid"),
+                               "constref" : command.get("constref"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "SwitchScenario":
+                        obj = {"commande" : "switchScenario",
+                               "svar" : command.get("svar"),
+                               "in" : "TODO"} #TODO : in
+                        funcl.append(obj)
+                    elif tag == "BranchScenarioNowAfter":
+                        obj = {"commande" : "BranchScenarioNowAfter",
+                               "svar" : command.get("svar"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "tolabel" : command.get("tolabel")}
+                        funcl.append(obj)
+                    elif tag == "WaitSubScreen":
+                        obj = {"commande" : "waitSubScreen"}
+                        funcl.append(obj)
+                    elif tag == "WaitFadeIn":
+                        obj = {"commande" : "waitFadeIn"}
+                        funcl.append(obj)
+                    elif tag == "message_Monologue":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "messageMonologue",
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "screen_FadeChange":
+                        obj = {"commande" : "screenFadeChange",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3")}
+                        funcl.append(obj)
+                    elif tag == "bgm_ChangeVolume":
+                        obj = {"commande" : "bgmChangeVolume",
+                               "duration" : command.get("duration"),
+                               "vol" : command.get("vol")}
+                        funcl.append(obj)
+                    elif tag == "bgm2_PlayFadeIn":
+                        obj = {"commande" : "bgm2PlayFadeIn",
+                               "bgm" : command.get("bgm"),
+                               "duration" : command.get("duration"),
+                               "vol" : command.get("vol")}
+                        funcl.append(obj)
+                    elif tag == "message_Mail":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "messageMail",
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "bgm2_FadeOut":
+                        obj = {"commande" : "bgm2FadeOut",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "WaitBgm2":
+                        obj = {"commande" : "waitBgm2",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "message_KeyWait":
+                        obj = {"commande" : "messageKeyWait"}
+                        funcl.append(obj)
+                    elif tag == "back2_SetEffect":
+                        obj = {"commande" : "back2SetEffect",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "flag_CalcBit":
+                        obj = {"commande" : "flagCalcBit",
+                               "svar" : command.get("svar"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "me_Play":
+                        obj = {"commande" : "mePlay",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "message_Explanation":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "messageExplanation",
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "flag_Set":
+                        obj = {"commande" : "flagSet",
+                               "to" : command.get("int"),
+                               "type" : "int"} #TODO : check int cant be str
+                        funcl.append(obj)
+                    elif tag == "message_SwitchMenu":
+                        lcase = []
+                        for loop in command:
+                            langl = []
+                            for loop2 in loop:
+                                langl.append([loop2.get("language"),loop2.text])
+                            lcase.append([loop.get("tolabel"),langl])
+                        obj = {"commande" : "messageSwitchMenu",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "lcase" : lcase}
+                        funcl.append(obj)
+                    elif tag == "back_SetBackEffect":
+                        obj = {"commande" : "backSetBackEffect",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "screen_WhiteOut":
+                        obj = {"commande" : "screenWhiteOut",
+                               "bool" : command.get("bool"),
+                               "duration" : command.get("duration")}
+                        funcl.append(obj)
+                    elif tag == "message_CloseEnforce":
+                        obj = {"commande" : "messageCloseEnforce"}
+                        funcl.append(obj)
+                    elif tag == "message_Narration":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "messageNarration",
+                               "param" : command.get("param"),
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "supervision_LoadStation":
+                        obj = {"commande" : "supervisionLoadStation",
+                               "levelid" : command.get("levelid"),
+                               "constref" : command.get("constref")}
+                        funcl.append(obj)
+                    elif tag == "supervision_Station":
+                        obj = {"commande" : "supervisionStation",
+                               "stationid" : command.get("stationid")}
+                        funcl.append(obj)
+                    elif tag == "supervision_SpecialActing":
+                        obj = {"commande" : "supervisionSpecialActing",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "supervision2_SpecialActing":
+                        obj = {"commande" : "supervision2SpecialActing",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "message_Menu":
+                        obj = {"commande" : "messageMenu",
+                               "menuid" : command.get("menuid")}
+                        funcl.append(obj)
+                    elif tag == "bgm2_Stop":
+                        obj = {"commande" : "bgm2Stop"}
+                        funcl.append(obj)
+                    elif tag == "message_FacePositionOffset":
+                        obj = {"commande" : "messageFacePositionOffset",
+                               "x" : command.get("x"),
+                               "y" : command.get("y")}
+                        funcl.append(obj)
+                    elif tag == "main_EnterDungeon":
+                        obj = {"commande" : "mainEnterDungeon",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "WaitLockLives":
+                        obj = {"commande" : "waitLockLives",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "Unlock":
+                        obj = {"commande" : "unlock",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "Lock":
+                        obj = {"commande" : "lock",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "SetDirection":
+                        obj = {"commande" : "setDirection",
+                               "direction" : command.get("direction")}
+                        funcl.append(obj)
+                    elif tag == "back2_SetBackEffect":
+                        obj = {"commande" : "back2SetBackEffect",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "screen2_WhiteOut":
+                        obj = {"commande" : "screen2WhiteOut",
+                               "bool" : command.get("bool"),
+                               "duration" : command.get("duration")}
+                        funcl.append(obj)
+                    elif tag == "flag_Clear":
+                        obj = {"commande" : "flagClear",
+                               "svar" : command.get("svar")}
+                        funcl.append(obj)
+                    
+                        
                     else:
                         print("tag inconnu : " + tag)
+                        error
                 fonc.append({"funcl": funcl,
                              "id" : funcid})
             scriptPack.append({"fonction" : fonc,
@@ -364,4 +604,5 @@ def getData(file):
     
     return rendu
 if __name__ == "__main__":
-    print(getData("export/scripts/G01P01B.xml"))
+    pass
+    #print(getData("export/scripts/G01P01B.xml"))

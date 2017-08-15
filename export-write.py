@@ -2,8 +2,6 @@ import exportRead
 import os
 import shutil
 import time
-originalFile = "export/scripts/G01P01B.xml"
-to = ""
 
 def getWrited(original,to):
     version = "0.0.1.0.1"
@@ -22,7 +20,6 @@ def getWrited(original,to):
             time.sleep(1)
     
     data = exportRead.getData(original)
-    print("writing LSDTable")
     LSD = ""
     for loop in data["LSDTable"]:
         LSD = LSD + loop + "\n"
@@ -82,12 +79,12 @@ def toCode(fonction):
                     if loop["type"]=="int":
                         rendu = rendu + deb + deb + "case " + loop["value"] + ":\n"
                         for loop2 in loop["text"]:
-                            rendu = rendu + deb + deb + deb + loop2[0] + " = '" + loop2[1] + "'\n"
+                            rendu = rendu + deb + deb + deb + loop2[0] + " = \"\"\"" + loop2[1] + "\"\"\"\n"
                     else:
                         print("erreur : type non spécifié")
                 rendu = rendu + deb + deb + "default:\n"
                 for loop in comm["default"]:
-                    rendu = rendu + deb + deb + deb + loop[0] + " = '" + loop[1] + "'\n"
+                    rendu = rendu + deb + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
             elif commande == "switchSector":
                 rendu = rendu + deb + "switchSector:\n"
                 rendu = rendu + deb + deb + "TODO\n"
@@ -153,7 +150,7 @@ def toCode(fonction):
             elif commande == "messageTalk":
                 rendu = rendu + deb + "messageTalk:\n"
                 for loop in comm["text"]:
-                    rendu = rendu + deb + deb + loop[0] + " = '" + loop[1] + "'\n"
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
             elif commande == "camera2SetPositionMark":
                 rendu = rendu + deb + "camera2SetPositionMark " + comm["param"] + " " + comm["param_1"] + " " + comm["param_2"] + " " + comm["param_3"] + "\n"
             elif commande == "supervisionRemoveActing":
@@ -174,12 +171,12 @@ def toCode(fonction):
                     if loop["type"]=="int":
                         rendu = rendu + deb + deb + "case " + loop["value"] + ":\n"
                         for loop2 in loop["text"]:
-                            rendu = rendu + deb + deb + deb + loop2[0] + " = '" + loop2[1] + "'\n"
+                            rendu = rendu + deb + deb + deb + loop2[0] + " = \"\"\"" + loop2[1] + "\"\"\"\n"
                     else:
                         print("erreur : type non spécifié")
                 rendu = rendu + deb + deb + "default:\n"
                 for loop in comm["default"]:
-                    rendu = rendu + deb + deb + deb + loop[0] + " = '" + loop[1] + "'\n"
+                    rendu = rendu + deb + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
             elif commande == "messageSetActor":
                 rendu = rendu + deb + "messageSetActor " + comm["actorid"] + "\n"
             elif commande == "cameraSetPositionMark":
@@ -209,7 +206,91 @@ def toCode(fonction):
                 rendu = rendu + deb + "seStop\n"
             elif commande == "waitBgm":
                 rendu = rendu + deb + "waitBgm " + comm["bgm"] + "\n"
-                
+            elif commande == "messageNotice":
+                rendu = rendu + deb + "messageNotice:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
+            elif commande == "supervisionExecuteStation":
+                rendu = rendu + deb + "supervisionExecuteStation level = " + comm["levelid"] + ", constref = " + comm["constref"] + ", " + comm["param_2"] + "\n"
+            elif commande == "hold":
+                rendu = rendu + deb + "hold\n"
+            elif commande == "branchBit":
+                rendu = rendu + deb + "branchBit svar = " + comm["svar"] + ", " + comm["param_1"] + ", label = " + comm["tolabel"] + "\n"
+            elif commande == "branchScenarioBefore":
+                rendu = rendu + deb + "branchScenarioBefore svar = " + comm["svar"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", label = " + comm["tolabel"] + "\n"
+            elif commande == "BranchScenarioNow":
+                rendu = rendu + deb + "BranchScenarioNow svar = " + comm["svar"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", label = " + comm["tolabel"] + "\n"
+            elif commande == "processSpecial":
+                rendu = rendu + deb + "processSpecial procspec = " + comm["procspec"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
+            elif commande == "supervisionExecuteStationSub":
+                rendu = rendu + deb + "supervisionExecuteStationSub level = " + comm["levelid"] + ", constref = " + comm["constref"] + ", " + comm["param_2"] + "\n"
+            elif commande == "switchScenario":
+                rendu = rendu + deb + "switchScenario svar = " + comm["svar"] + ":\n"
+                rendu = rendu + deb + deb + "TODO"#TODO : in
+            elif commande == "BranchScenarioNowAfter":
+                rendu = rendu + deb + "BranchScenarioNowAfter svar = " + comm["svar"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", label = " + comm["tolabel"] + "\n"
+            elif commande == "waitSubScreen":
+                rendu = rendu + deb + "waitSubScreen\n"
+            elif commande == "waitFadeIn":
+                rendu = rendu + deb + "waitFadeIn\n"
+            elif commande == "messageMonologue":
+                rendu = rendu + deb + "messageMonologue:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
+            elif commande == "screenFadeChange":
+                rendu = rendu + deb + "screenFadeChange " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + "\n"
+            elif commande == "bgmChangeVolume":
+                rendu = rendu + deb + "bgmChangeVolume duration = " + comm["duration"] + ", volume = " + comm["vol"] + "\n"
+            elif commande == "bgm2PlayFadeIn":
+                rendu = rendu + deb + "bgm2PlayFadeIn bgm = " + comm["bgm"] + ", duration = " + comm["duration"] + ", volume = " + comm["vol"] + "\n"
+            elif commande == "messageMail":
+                rendu = rendu + deb + "messageMail:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1]+ "\"\"\"\n"
+            elif commande == "bgm2FadeOut":
+                rendu = rendu + deb + "bgm2FadeOut " + comm["param"] + "\n"
+            elif commande == "waitBgm2":
+                rendu = rendu + deb + "waitBgm2 " + comm["param"] + "\n"
+            elif commande == "messageKeyWait":
+                rendu = rendu + deb + "messageKeyWait\n"
+            elif commande == "back2SetEffect":
+                rendu = rendu + deb + "back2SetEffect " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "flagCalcBit":
+                rendu = rendu + deb + "flagCalcBit svar = " + comm["svar"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
+            elif commande == "mePlay":
+                rendu = rendu + deb + "mePlay " + comm["param"] + "\n"
+            elif commande == "messageExplanation":
+                rendu = rendu + deb + "messageExplanation:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1]+ "\"\"\"\n"
+            elif commande == "flagSet":
+                rendu = rendu + deb + "flagSet to = " + comm["to"] + ", type = " + comm["type"] + "\n"
+            elif commande == "messageSwitchMenu":
+                rendu = rendu + deb + "messageSwitchMenu " + comm["param"] + ", " + comm["param_1"] + ":\n"
+                for loop in comm["lcase"]:
+                    rendu = rendu + deb + deb + loop[0] + ":\n"
+                    for loop2 in loop[1]:
+                        rendu = rendu + deb + deb + deb + loop2[0] + " = " + loop2[1] + "\n"
+            elif commande == "backSetBackEffect":
+                rendu = rendu + deb + "backSetBackEffect " + comm["param"] + "\n"    
+            elif commande == "screenWhiteOut":
+                if comm["bool"] == "1":
+                    boole = "True"
+                else:
+                    boole = "False"
+                rendu = rendu + deb + "screenWhiteOut duration = " + comm["duration"] + ", bool = " + boole + "\n"
+            elif commande == "messageCloseEnforce":
+                rendu = rendu + deb + "messageCloseEnforce\n"
+            elif commande == "messageNarration":
+                rendu = rendu + deb + "messageNarration " + comm["param"] + ":\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1]+ "\"\"\"\n"
+            elif commande == "supervisionLoadStation":
+                rendu = rendu + deb + "supervisionLoadStation level = " + comm["levelid"] + ", constref = " + comm["constref"] + "\n"
+            elif commande == "supervisionStation":
+                rendu = rendu + deb + "supervisionStation station = " + comm["stationid"] + "\n"
+            
+            
             else:
                 rendu = rendu + deb + "commande inconnu : " + commande + "\n"
                 print(rendu)
@@ -217,5 +298,15 @@ def toCode(fonction):
                 pass
 
     return rendu
-getWrited(originalFile,to)
+if __name__ == "__main__":
+    #TODO : scan de COMMON.xml
+    #shutil.rmtree("rendu")
+    try:
+        os.mkdir("rendu")
+    except:
+        pass
+    to = "rendu/"
+    for loop in os.listdir("export/scripts/"):
+        if loop != "COMMON.xml":
+            getWrited("export/scripts/"+loop,to)
  
