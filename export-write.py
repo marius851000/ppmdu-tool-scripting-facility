@@ -4,7 +4,7 @@ import shutil
 import time
 
 def getWrited(original,to):
-    version = "0.0.1.0.1"
+    version = "0.0.2"#objectif : list all code, then, goto 0.1.x
     subdir = to + original.split("/")[len(original.split("/"))-1]
     try:
         shutil.rmtree(subdir)
@@ -289,8 +289,66 @@ def toCode(fonction):
                 rendu = rendu + deb + "supervisionLoadStation level = " + comm["levelid"] + ", constref = " + comm["constref"] + "\n"
             elif commande == "supervisionStation":
                 rendu = rendu + deb + "supervisionStation station = " + comm["stationid"] + "\n"
-            
-            
+            elif commande == "supervisionSpecialActing":
+                rendu = rendu + deb + "supervisionSpecialActing " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
+            elif commande == "supervision2SpecialActing":
+                rendu = rendu + deb + "supervision2SpecialActing " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
+            elif commande == "messageMenu":
+                rendu = rendu + deb + "messageMenu " + comm["menuid"] + "\n"
+            elif commande == "bgm2Stop":
+                rendu = rendu + deb + "bgm2Stop\n"
+            elif commande == "messageFacePositionOffset":
+                rendu = rendu + deb + "messageFacePositionOffset x = " + comm["x"] + ", y = " + comm["y"] + "\n"
+            elif commande == "mainEnterDungeon":
+                rendu = rendu + deb + "mainEnterDungeon " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "waitLockLives":
+                rendu = rendu + deb + "waitLockLives " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "unlock":
+                rendu = rendu + deb + "unlock " + comm["param"] + "\n"
+            elif commande == "lock":
+                rendu = rendu + deb + "lock " + comm["param"] + "\n"
+            elif commande == "setDirection":
+                rendu = rendu + deb + "setDirection " + comm["direction"] + "\n"
+            elif commande == "back2SetBackEffect":
+                rendu = rendu + deb + "back2SetBackEffect " + comm["param"] + "\n"
+            elif commande == "screen2WhiteOut":
+                if comm["bool"] == "1":
+                    boole = "True"
+                else:
+                    boole = "False"
+                rendu = rendu + deb + "screen2WhiteOut duration = " + comm["duration"] + ", bool = " + boole + "\n"
+            elif commande == "flagClear":
+                rendu = rendu + deb + "flagClear " + comm["svar"] + "\n"
+            elif commande == "bgm2ChangeVolume":
+                rendu = rendu + deb + "bgm2ChangeVolume " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "flagCalcValue":
+                rendu = rendu + deb + "flagCalcValue svar = " + comm["svar"] + ", " + comm["param_1"] + ", int = " + comm["int"] + "\n"
+            elif commande == "messageSetWaitMode":
+                rendu = rendu + deb + "messageSetWaitMode " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "setOutputAttribute":
+                rendu = rendu + deb + "setOutputAttribute " + comm["param"] + "\n"
+            elif commande == "slidePositionOffset":
+                rendu = rendu + deb + "SlidePositionOffset " + comm["param"] + ", x = " + comm["x"] + ", " + comm["y"] + "\n"
+            elif commande == "setEffect":
+                rendu = rendu + deb + "SetEffect " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "waitAnimation":
+                rendu = rendu + deb + "WaitAnimation\n"
+            elif commande == "turn2Direction":
+                rendu = rendu + deb + "Turn2Direction " + comm["param"] + ", " + comm["param_1"] + ", direction = " + comm["direction"] + "\n"
+            elif commande == "waitBgmSignal":
+                rendu = rendu + deb + "WaitBgmSignal\n"
+            elif commande == "waitEffect":
+                rendu = rendu + deb + "WaitEffect\n"
+            elif commande == "slidePositionOffset":
+                rendu = rendu + deb + "slidePositionOffset " + comm["param"] + ", x = " + comm["x"] + ", y = " + comm["y"] + "\n"
+            elif commande == "setPositionOffset":
+                rendu = rendu + deb + "setPositionOffset " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "backSetDungeonBanner":
+                rendu = rendu + deb + "backSetDungeonBanner " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "bgmStop":
+                rendu = rendu + deb + "bgmStop\n"
+            elif commande == "branchPerformance":
+                rendu = rendu + deb + "branchPerformance " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
             else:
                 rendu = rendu + deb + "commande inconnu : " + commande + "\n"
                 print(rendu)

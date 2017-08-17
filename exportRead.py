@@ -1,6 +1,6 @@
 from lxml import etree
 def getData(file):
-    uncompilerversion = "0.0.0.3 - debug"
+    uncompilerversion = "0.0.0.4 - debug" #objectif : list all code, then, goto 0.1.x
     temp = open(file,"r")
     xml = temp.read()
     temp.close()
@@ -587,8 +587,76 @@ def getData(file):
                         obj = {"commande" : "flagClear",
                                "svar" : command.get("svar")}
                         funcl.append(obj)
-                    
-                        
+                    elif tag == "bgm2_ChangeVolume":
+                        obj = {"commande" : "bgm2ChangeVolume",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "flag_CalcValue":
+                        obj = {"commande" : "flagCalcValue",
+                               "svar" : command.get("svar"),
+                               "param_1" : command.get("param_1"),
+                               "int" : command.get("int")}
+                        funcl.append(obj)
+                    elif tag == "message_SetWaitMode":
+                        obj = {"commande" : "messageSetWaitMode",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "SetOutputAttribute":
+                        obj = {"commande" : "setOutputAttribute",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "SlidePositionOffset":
+                        obj = {"commande" : "slidePositionOffset",
+                               "param" : command.get("param"),
+                               "x" : command.get("x"),
+                               "y" : command.get("y")}
+                        funcl.append(obj)
+                    elif tag == "SetEffect":
+                        obj = {"commande" : "setEffect",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "WaitAnimation":
+                        obj = {"commande" : "waitAnimation"}
+                        funcl.append(obj)
+                    elif tag == "Turn2Direction":
+                        obj = {"commande" : "turn2Direction",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "direction" : command.get("direction")}
+                        funcl.append(obj)
+                    elif tag == "WaitBgmSignal":
+                        obj = {"commande" : "waitBgmSignal"}
+                        funcl.append(obj)
+                    elif tag == "WaitEffect":
+                        obj = {"commande" : "waitEffect"}
+                        funcl.append(obj)
+                    elif tag == "SetPositionOffset":
+                        obj = {"commande" : "setPositionOffset",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "back_SetDungeonBanner":
+                        obj = {"commande" : "backSetDungeonBanner",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "bgm_Stop":
+                        obj = {"commande" : "bgmStop"}
+                        funcl.append(obj)
+                    elif tag == "BranchPerformance":
+                        obj = {"commande" : "branchPerformance",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "BranchVariation":
+                        obj = {"commande" : "branchVariation",
+                               "svar" : command.get("svar"),
+                               "tolabel" : command.get("tolabel")}
+                        funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)
                         error
