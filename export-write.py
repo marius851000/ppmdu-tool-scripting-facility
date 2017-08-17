@@ -4,7 +4,7 @@ import shutil
 import time
 
 def getWrited(original,to):
-    version = "0.0.2"#objectif : list all code, then, goto 0.1.x
+    version = "0.0.2.1"#objectif : list all code, then, goto 0.1.x
     subdir = to + original.split("/")[len(original.split("/"))-1]
     try:
         shutil.rmtree(subdir)
@@ -226,7 +226,7 @@ def toCode(fonction):
                 rendu = rendu + deb + "supervisionExecuteStationSub level = " + comm["levelid"] + ", constref = " + comm["constref"] + ", " + comm["param_2"] + "\n"
             elif commande == "switchScenario":
                 rendu = rendu + deb + "switchScenario svar = " + comm["svar"] + ":\n"
-                rendu = rendu + deb + deb + "TODO"#TODO : in
+                rendu = rendu + deb + deb + "TODO\n"#TODO : in
             elif commande == "BranchScenarioNowAfter":
                 rendu = rendu + deb + "BranchScenarioNowAfter svar = " + comm["svar"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", label = " + comm["tolabel"] + "\n"
             elif commande == "waitSubScreen":
@@ -349,10 +349,64 @@ def toCode(fonction):
                 rendu = rendu + deb + "bgmStop\n"
             elif commande == "branchPerformance":
                 rendu = rendu + deb + "branchPerformance " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
+            elif commande == "branchVariation":
+                rendu = rendu + deb + "branchVariation svar = " + comm["svar"] + ", label = " + comm["tolabel"] + "\n"
+            elif commande == "switchScenarioLevel":
+                rendu = rendu + deb + "switchScenarioLevel " + comm["svar"] + ":\n"
+                rendu = rendu + deb + deb + "TODO\n" #TODO : in
+            elif commande == "movePositionMark":
+                rendu = rendu + deb + "movePositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", x = " + comm["x"] + ", y = " + comm["y"] + "\n"
+            elif commande == "screenWhiteOutAll":
+                rendu = rendu + deb + "screenWhiteOutAll " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "screenFadeInAll":
+                if comm["bool"] == "1":
+                    boole = "True"
+                else:
+                    boole = "False"
+                rendu = rendu + deb + "screenFadeInAll duration = " + comm["duration"] + ", bool = " + boole + "\n"
+            elif commande == "seFadeOut":
+                rendu = rendu + deb + "seFadeOut " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "setPositionInitial":
+                rendu = rendu + deb + "setPositionInitial\n"
+            elif commande == "supervisionExecuteCommon":
+                rendu = rendu + deb + "supervisionExecuteCommon " + comm["croutineid"] + "\n"
+            elif commande == "branch":
+                rendu = rendu + deb + "branch svar = " + comm["svar"] + ", " + comm["param_1"] + ", label = " + comm["tolabel"] + "\n"
+            elif commande == "cameraMove2Default":
+                rendu = rendu + deb + "cameraMove2Default " + comm["param"] + "\n"
+            elif commande == "supervisionSuspend":
+                rendu = rendu + deb + "supervisionSuspend " + comm["param"] + "\n"
+            elif commande == "messageImitationSound":
+                rendu = rendu + deb + "messageImitationSound:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
+            elif commande == "waitMe":
+                rendu = rendu + deb + "waitMe " + comm["param"] + "\n"
+            elif commande == "worldmapSetMode":
+                rendu = rendu + deb + "worldmapSetMode " + comm["param"] + "\n"
+            elif commande == "worldmapSetLevel":
+                rendu = rendu + deb + "worldmapSetLevel " + comm["param"] + "\n"
+            elif commande == "worldmapChangeLevel":
+                rendu = rendu + deb + "worldmapChangeLevel " + comm["param"] + "\n"
+            elif commande == "worldmapSetCamera":
+                rendu = rendu + deb + "worldmapSetCamera " + comm["param"] + "\n"
+            elif commande == "resetFunctionAttribute":
+                rendu = rendu + deb + "resetFunctionAttribute " + comm["param"] + "\n"
+            elif commande == "slidePositionMark":
+                rendu = rendu + deb + "slidePositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + ", " + comm["param_4"] + "\n"
+            elif commande == "setFunctionAttribute":
+                rendu = rendu + deb + "setFunctionAttribute " + comm["param"] + "\n"
+            elif commande == "slideHeight":
+                rendu = rendu + deb + "slideHeight " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "mainSetGround":
+                rendu = rendu + deb + "mainSetGround " + comm["levelid"] + "\n"
+            elif commande == "mainEnterGround":
+                rendu = rendu + deb + "mainEnterGround level = " + comm["levelid"] + ", " + comm["param_1"] + "\n"
+            elif commande == "supervisionRemoveCommon":
+                rendu = rendu + deb + "supervisionRemoveCommon " + comm["param"] + "\n"
             else:
-                rendu = rendu + deb + "commande inconnu : " + commande + "\n"
-                print(rendu)
-                error
+                print("commande inconnu : " + commande)
+                #error
                 pass
 
     return rendu
