@@ -406,7 +406,7 @@ def toCode(fonction):
                 rendu = rendu + deb + "supervisionRemoveCommon " + comm["param"] + "\n"
             else:
                 print("commande inconnu : " + commande)
-                #error
+                error
                 pass
 
     return rendu

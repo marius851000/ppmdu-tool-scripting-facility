@@ -774,7 +774,7 @@ def getData(file):
                         funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)
-                        #error
+                        error
                 fonc.append({"funcl": funcl,
                              "id" : funcid})
             scriptPack.append({"fonction" : fonc,
