@@ -487,10 +487,13 @@ def getData(file):
                     elif tag == "message_SwitchMenu":
                         lcase = []
                         for loop in command:
-                            langl = []
-                            for loop2 in loop:
-                                langl.append([loop2.get("language"),loop2.text])
-                            lcase.append([loop.get("tolabel"),langl])
+                            if loop.tag == "CaseMenu":
+                                langl = []
+                                for loop2 in loop:
+                                    langl.append([loop2.get("language"),loop2.text])
+                                lcase.append(["normal",loop.get("tolabel"),langl])
+                            elif loop.tag == "CaseMenu2":
+                                lcase.append("ex")#TODO
                         obj = {"commande" : "messageSwitchMenu",
                                "param" : command.get("param"),
                                "param_1" : command.get("param_1"),
@@ -771,6 +774,211 @@ def getData(file):
                                "param_2" : command.get("param_2"),
                                "param_3" : command.get("param_3"),
                                "param_4" : command.get("param_4")}
+                        funcl.append(obj)
+                    elif tag == "flag_SetPerformance":
+                        obj = {"commande" : "flagSetPerformance",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "MoveHeight":
+                        obj = {"commande" : "moveHeight",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "BranchDebug":
+                        obj = {"commande" : "branchDebug",
+                               "bool" : command.get("bool"),
+                               "tolabel" : command.get("tolabel")}
+                        funcl.append(obj)
+                    elif tag == "WaitScreen2Fade":
+                        obj = {"commande" : "waitScreen2Fade"}
+                        funcl.append(obj)
+                    elif tag == "screen_WhiteChange":
+                        obj = {"commande" : "screenWhiteChange",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3")}
+                        funcl.append(obj)
+                    elif tag == "message_SetFaceEmpty":
+                        obj = {"commande" : "messageSetFaceEmpty",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "worldmap_SetArrow":
+                        obj = {"commande" : "worldmapSetArrow",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "worldmap_BlinkMark":
+                        obj = {"commande" : "worldmapBlinkMark",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "SwitchRandom":
+                        obj = {"commande" : "switchRandom",
+                               "param" : command.get("param"),
+                               "in" : "TODO"}#TODO : in
+                        funcl.append(obj)
+                    elif tag == "supervision_ExecuteStationCommon":
+                        obj = {"commande" : "supervisionExecuteStationCommon",
+                               "levelid" : command.get("levelid"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "SetMoveRange":
+                        obj = {"commande" : "setMoveRange",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3"),
+                               "param_4" : command.get("param_4"),
+                               "param_5" : command.get("param_5")}
+                        funcl.append(obj)
+                    elif tag == "se_PlayVolume":
+                        obj = {"commande" : "sePlayVolume",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "se_ChangeVolume":
+                        obj = {"commande" : "seChangeVolume",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "WaitRandom":
+                        obj = {"commande" : "waitRandom",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "MovePositionOffset":
+                        obj = {"commande" : "movePositionOffset",
+                               "param" : command.get("param"),
+                               "x" : command.get("x"),
+                               "y" : command.get("y")}
+                        funcl.append(obj)#TODO : condition
+                    elif tag == "camera2_SetEffect":
+                        obj = {"commande" : "camera2SetEffect",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "Slide2PositionLives":
+                        obj = {"commande" : "slide2PositionLives",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "supervision_ActingInvisible":
+                        obj = {"commande" : "supervisionActingInvisible",
+                               "layerid" : command.get("layerid")}
+                        funcl.append(obj)
+                    elif tag == "ResetOutputAttribute":
+                        obj = {"commande" : "resetOutputAttribute",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "back_SetEffect":
+                        obj = {"commande" : "backSetEffect",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "WaitBackEffect":
+                        obj = {"commande" : "waitBackEffect"}
+                        funcl.append(obj)
+                    elif tag == "WaitEndAnimation":
+                        obj = {"commande" : "waitEndAnimation"}
+                        funcl.append(obj)
+                    elif tag == "Turn2DirectionLives":
+                        obj = {"commande" : "turn2DirectionLives",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "actorid" : command.get("actorid")}
+                        funcl.append(obj)
+                    elif tag == "Move2PositionLives":
+                        obj = {"commande" : "move2PositionLives",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "camera_SetDefault":
+                        obj = {"commande" : "cameraSetDefault"}
+                        funcl.append(obj)
+                    elif tag == "Destroy":
+                        obj = {"commande" : "destroy"}
+                        funcl.append(obj)
+                    elif tag == "StopAnimation":
+                        obj = {"commande" : "stopAnimation"}
+                        funcl.append(obj)
+                    elif tag == "item_Set":
+                        obj = {"commande" : "itemSet",
+                               "param" : command.get("param"),
+                               "itemid" : command.get("itemid"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "BranchScenarioNowBefore":
+                        obj = {"commande" : "branchScenarioNowBefore",
+                               "svar" : command.get("svar"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "tolabel" : command.get("tolabel")}
+                        funcl.append(obj)
+                    elif tag == "item_SetTableData":
+                        obj = {"commande" : "itemSetTableData",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "back_SetWeather":
+                        obj = {"commande" : "backSetWeather",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "PauseEffect":
+                        obj = {"commande" : "pauseEffect",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "supervision_ExecuteActing":
+                        obj = {"commande" : "supervisionExecuteActing",
+                               "levelid" : command.get("levelid"),
+                               "constref" : command.get("constref"),
+                               "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "bgm2_Play":
+                        obj = {"commande" : "bgm2Play",
+                             "bgm" : command.get("bgm")}
+                        funcl.append(obj)
+                    elif tag == "ResetHitAttribute":
+                        obj = {"commande" : "resetHitAttribute",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "back_ChangeGround":
+                        obj = {"commande" : "backChangeGround",
+                               "levelid" : command.get("levelid")}
+                        funcl.append(obj)
+                    elif tag == "camera_SetMyPosition":
+                        obj = {"commande" : "cameraSetMyPosition"}
+                        funcl.append(obj)
+                    elif tag == "worldmap_SetMark":
+                        obj = {"commande" : "worldmapSetMark",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "worldmap_MoveCamera":
+                        obj = {"commande" : "worldmapMoveCamera",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "worldmap_SetMessagePlace":
+                        obj = {"commande" : "worldmapSetMessagePlace",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "main_EnterAdventure":
+                        obj = {"commande" : "mainEnterAdventure",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "camera_MoveDefault":
+                        obj = {"commande" : "cameraMoveDefault",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "screen2_WhiteChange":
+                        obj = {"commande" : "screen2_WhiteChange",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3")}
                         funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)
