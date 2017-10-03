@@ -114,7 +114,7 @@ def getData(file):
                             elif case.tag == "DefaultText":
                                 defaultText = caset
                             else:
-                                print("erreur non bloquante : type de condition de texte non définie.")
+                                print("erreur non bloquante : type de condition de texte non definie.")
                         obj = {"commande" : "messageSwitchTalk",
                                "svar" : command.get("svar"),
                                "case" : caseText,
@@ -220,7 +220,7 @@ def getData(file):
                             elif case.tag == "DefaultText":
                                 defaultText = caset
                             else:
-                                print("erreur non bloquante : type de condition de texte non définie.")
+                                print("erreur non bloquante : type de condition de texte non definie.")
                         obj = {"commande" : "messageSwitchMonologue",
                                "svar" : command.get("svar"),
                                "case" : caseText,
@@ -974,11 +974,36 @@ def getData(file):
                                "param" : command.get("param")}
                         funcl.append(obj)
                     elif tag == "screen2_WhiteChange":
-                        obj = {"commande" : "screen2_WhiteChange",
+                        obj = {"commande" : "screen2WhiteChange",
                                "param" : command.get("param"),
                                "param_1" : command.get("param_1"),
                                "param_2" : command.get("param_2"),
                                "param_3" : command.get("param_3")}
+                        funcl.append(obj)
+                    elif tag == "back_SetBackScrollSpeed":
+                        obj = {"commande" : "backSetBackScrollSpeed",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "Move2PositionMark":
+                        obj = {"commande" : "move2PositionMark",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3"),
+                               "param_4" : command.get("param_4")}
+                        funcl.append(obj)
+                    elif tag == "SetPositionMark":
+                        obj = {"commande" : "setPositionMark",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3")}
+                        funcl.append(obj)
+                    elif tag == "back2_SetBackScrollSpeed":
+                        obj = {"commande" : "back2SetBackScrollSpeed",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
                         funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)

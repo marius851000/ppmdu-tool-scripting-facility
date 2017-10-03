@@ -2,6 +2,7 @@ import exportRead
 import os
 import shutil
 import time
+import sys
 
 def getWrited(original,to):
     version = "0.0.2.2"#objectif : list all code, then, goto 0.1.x
@@ -500,6 +501,14 @@ def toCode(fonction):
                 rendu = rendu + deb + "cameraMoveDefault " + comm["param"] + "\n"
             elif commande == "screen2WhiteChange":
                 rendu = rendu + deb + "screen2WhiteChange " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + "\n"
+            elif commande == "backSetBackScrollSpeed":
+                rendu = rendu + deb + "backSetBackScrollSpeed " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "move2PositionMark":
+                rendu = rendu + deb + "move2PositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + ", " + comm["param_4"] + "\n"
+            elif commande == "setPositionMark":
+                rendu = rendu + deb + "setPositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"]+"\n"
+            elif commande == "back2SetBackScrollSpeed":
+                rendu = rendu + deb + "back2SetBackScrollSpeed " + comm["param"] + ", " + comm["param_1"] + "\n"
             else:
                 print("commande inconnu : " + commande)
                 error
