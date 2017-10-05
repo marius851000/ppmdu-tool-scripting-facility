@@ -1005,6 +1005,11 @@ def getData(file):
                                "param" : command.get("param"),
                                "param_1" : command.get("param_1")}
                         funcl.append(obj)
+                    elif tag == "WaitLockObject":
+                        obj = {"commande" : "waitLockObject",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1")}
+                        funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)
                         error

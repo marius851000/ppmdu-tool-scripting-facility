@@ -509,6 +509,8 @@ def toCode(fonction):
                 rendu = rendu + deb + "setPositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"]+"\n"
             elif commande == "back2SetBackScrollSpeed":
                 rendu = rendu + deb + "back2SetBackScrollSpeed " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "waitLockObject":
+                rendu = rendu + deb + "waitLockObject" + comm["param"] + ", " + comm["param_1"] + "\n"
             else:
                 print("commande inconnu : " + commande)
                 error
