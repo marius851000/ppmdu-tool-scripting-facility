@@ -513,7 +513,7 @@ def toCode(fonction):
                 rendu = rendu + deb + "waitLockObject" + comm["param"] + ", " + comm["param_1"] + "\n"
             else:
                 print("commande inconnu : " + commande)
-                error
+                #error
                 pass
 
     return rendu
