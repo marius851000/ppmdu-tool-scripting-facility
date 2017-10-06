@@ -1010,6 +1010,27 @@ def getData(file):
                                "param" : command.get("param"),
                                "param_1" : command.get("param_1")}
                         funcl.append(obj)
+                    elif tag == "Turn3":
+                        obj = {"commande" : "turn3",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3")}
+                        funcl.append(obj)
+                    elif tag == "camera2_MovePositionMark":
+                        obj = {"commande" : "camera2MovePositionMark",
+                               "param" : command.get("param"),
+                               "param_1" : command.get("param_1"),
+                               "param_2" : command.get("param_2"),
+                               "param_3" : command.get("param_3"),
+                               "param_4" : command.get("param_4")}
+                        funcl.append(obj)
+                    elif tag == "WaitMoveCamera2":
+                        obj = {"commande" : "waitMoveCamera2"}
+                        funcl.append(obj)
+                    elif tag == "worldmap_DeleteArrow":
+                        obj = {"worldmapDeleteArrow"}
+                        funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)
                         #error

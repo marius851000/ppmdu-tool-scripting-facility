@@ -510,7 +510,15 @@ def toCode(fonction):
             elif commande == "back2SetBackScrollSpeed":
                 rendu = rendu + deb + "back2SetBackScrollSpeed " + comm["param"] + ", " + comm["param_1"] + "\n"
             elif commande == "waitLockObject":
-                rendu = rendu + deb + "waitLockObject" + comm["param"] + ", " + comm["param_1"] + "\n"
+                rendu = rendu + deb + "waitLockObject " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "turn3":
+                rendu = rendu + deb + "turn3 " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + "\n"
+            elif commande == "camera2MovePositionMark":
+                rendu = rendu + deb + "camera2MovePositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + ", " + comm["param_4"] + "\n"
+            elif commande == "waitMoveCamera2":
+                rendu = rendu + deb + "waitMoveCamera2\n"
+            elif commande == "worldmapDeleteArrow":
+                rendu = rendu + deb + "worldmapDeleteArrow\n"
             else:
                 print("commande inconnu : " + commande)
                 #error
