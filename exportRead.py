@@ -15,7 +15,7 @@ def getData(file):
         else:
             if xml[loop-1] == ">" and xml[loop-2] == "-" and xml[loop-3] == "-":
                 inCom = False
-        
+
         if not inCom:
             xmlt = xmlt + xml[loop]
 
@@ -475,7 +475,10 @@ def getData(file):
                     elif tag == "message_Explanation":
                         caset = []
                         for lang in command:
-                            caset.append([lang.get("language"),lang.text])
+                            temp51 = [lang.get("language"),lang.text]
+                            if type(temp51[1]) != str:
+                                temp51[1] = ""
+                            caset.append(temp51)
                         obj = {"commande" : "messageExplanation",
                                "text" : caset}
                         funcl.append(obj)
@@ -1029,7 +1032,114 @@ def getData(file):
                         obj = {"commande" : "waitMoveCamera2"}
                         funcl.append(obj)
                     elif tag == "worldmap_DeleteArrow":
-                        obj = {"worldmapDeleteArrow"}
+                        obj = {"commande":"worldmapDeleteArrow"}
+                        funcl.append(obj)
+                    elif tag == "WaitMoveCamera":
+                        obj = {"commande" : "waitMoveCamera"}
+                        funcl.append(obj)
+                    elif tag == "flag_SetAdventureLog":
+                        obj = {"commande" : "flagSetAdventureLog",
+                            "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "item_GetVariable":
+                        obj = {"commande" : "itemGetVariable",
+                            "param" : command.get("param"),
+                            "param_1" : command.get("param_1")}
+                        funcl.append(obj)
+                    elif tag == "back_SetSpecialEpisodeBanner3":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "backSetSpecialEpisodeBanner3",
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "back_SetSpecialEpisodeBanner":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "backSetSpecialEpisodeBanner",
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "back_SetSpecialEpisodeBanner2":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "backSetSpecialEpisodeBanner2",
+                               "text" : caset}
+                        funcl.append(obj)
+                    elif tag == "back_SetBackScrollOffset":
+                        obj = {"commande" : "backSetBackScrollOffset",
+                            "param" : command.get("param"),
+                            "param_1" : command.get("param")}
+                    elif tag == "camera_SetMyself":
+                        obj = {"commande" : "cameraSetMyself"}
+                        funcl.append(obj)
+                    elif tag == "camera_Move2PositionMark":
+                        obj = {"commande" : "cameraMove2PositionMark",
+                            "param" : command.get("param"),
+                            "param_1" : command.get("param_1"),
+                            "param_2" : command.get("param_2"),
+                            "param_3" : command.get("param_3"),
+                            "param_4" : command.get("param_4"),
+                            "param_5" : command.get("param_5"),
+                            "param_6" : command.get("param_6"),
+                            "param_7" : command.get("param_7"),
+                            "param_8" : command.get("param_8"),
+                            "param_9" : command.get("param_9"),
+                            "param_10" : command.get("param_10"),
+                            "param_11" : command.get("param_11"),
+                            "param_12" : command.get("param_12"),
+                            "param_13" : command.get("param_13"),
+                            "param_14" : command.get("param_14"),
+                            "param_15" : command.get("param_15"),
+                            "param_16" : command.get("param_16")}
+                        funcl.append(obj)
+                    elif tag=="Slide2PositionOffset":
+                        obj = {"commande" : "slide2PositionOffset",
+                            "param" : command.get("param"),
+                            "x" : command.get("x"),
+                            "y" : command.get("y")}
+                        funcl.append(obj)
+                    elif tag=="Move3PositionOffset":
+                        obj = {"commande" : "move3PositionOffset",
+                            "param" : command.get("param"),
+                            "x" : command.get("x"),
+                            "y" : command.get("y")}
+                        funcl.append(obj)
+                    elif tag=="MoveDirection":
+                        obj = {"commande" : "moveDirection",
+                            "param" : command.get("param"),
+                            "param_1" : command.get("param_1"),
+                            "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag=="MoveTurn":
+                        obj = {"commande" : "moveTurn",
+                            "param" : command.get("param"),
+                            "param_1" : command.get("param_1"),
+                            "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag=="Turn2DirectionLives2":
+                        obj = {"commande" : "turn2directionLives2",
+                            "param" : command.get("param"),
+                            "param_1" : command.get("param_1"),
+                            "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag=="WaitLockSupervision":
+                        obj = {"commande" : "waitLockSupervision",
+                            "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag=="MoveSpecial":
+                        obj = {"commande" : "moveSpecial",
+                            "param" : command.get("param"),
+                            "param_1" : command.get("param_1"),
+                            "param_2" : command.get("param_2")}
+                        funcl.append(obj)
+                    elif tag == "Call":
+                        obj = {"commande" : "call",
+                            "lroutineid" : command.get("lroutineid")}
+                        funcl.append(obj)
+                    elif tag == "Return":
+                        obj = {"commande" : "return"}
                         funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)
@@ -1038,12 +1148,12 @@ def getData(file):
                              "id" : funcid})
             scriptPack.append({"fonction" : fonc,
                                "name" : name})
-        
+
     rendu = {"game" : leveldata,
              "LSDTable" : LSDdata,
              "script" : scriptPack,
              "version" : uncompilerversion}
-    
+
     return rendu
 if __name__ == "__main__":
     pass

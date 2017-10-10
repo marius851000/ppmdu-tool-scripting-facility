@@ -19,7 +19,7 @@ def getWrited(original,to):
             end = True
         except:
             time.sleep(1)
-    
+
     data = exportRead.getData(original)
     LSD = ""
     for loop in data["LSDTable"]:
@@ -53,6 +53,8 @@ def toCode(fonction):
     for fonc in fonction["fonction"]:
         rendu = rendu + fonc["id"] + ":\n"
         for comm in fonc["funcl"]:
+            #print(type(comm))
+            #print(comm["commande"])
             commande = comm["commande"]
             if commande == "end":
                 rendu = rendu + deb + "#end\n"
@@ -279,7 +281,7 @@ def toCode(fonction):
                     elif loop[0] == "ex":
                         rendu = rendu + deb + deb + "TODO:"
             elif commande == "backSetBackEffect":
-                rendu = rendu + deb + "backSetBackEffect " + comm["param"] + "\n"    
+                rendu = rendu + deb + "backSetBackEffect " + comm["param"] + "\n"
             elif commande == "screenWhiteOut":
                 if comm["bool"] == "1":
                     boole = "True"
@@ -519,6 +521,46 @@ def toCode(fonction):
                 rendu = rendu + deb + "waitMoveCamera2\n"
             elif commande == "worldmapDeleteArrow":
                 rendu = rendu + deb + "worldmapDeleteArrow\n"
+            elif commande == "waitMoveCamera":
+                rendu = rendu + deb + "waitMoveCamera\n"
+            elif commande == "flagSetAdventureLog":
+                rendu = rendu + deb + "flagSetAdventureLog " + comm["param"] + "\n"
+            elif commande == "itemGetVariable":
+                rendu = rendu + deb + "itemGetVariable " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "backSetSpecialEpisodeBanner3":
+                rendu = rendu + deb + "backSetSpecialEpisodeBanner3:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
+            elif commande == "backSetSpecialEpisodeBanner":
+                rendu = rendu + deb + "backSetSpecialEpisodeBanner:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
+            elif commande == "backSetSpecialEpisodeBanner2":
+                rendu = rendu + deb + "backSetSpecialEpisodeBanner2:\n"
+                for loop in comm["text"]:
+                    rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
+            elif commande == "backSetBackScrollOffset":
+                rendu = rendu + deb + "backSetBackScrollOffset " + comm["param"] + ", " + comm["param_1"] + "\n"
+            elif commande == "cameraSetMyself":
+                rendu = rendu + deb + "cameraSetMyself\n"
+            elif commande == "cameraMove2PositionMark":
+                rendu = rendu + deb + "cameraMove2PositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + ", " + comm["param_4"] + ", " + comm["param_5"] + ", " + comm["param_6"] + ", " + comm["param_7"] + ", " + comm["param_8"] + ", " + comm["param_9"] + ", " +  comm["param_10"] + ", " +  comm["param_11"] + ", " + comm["param_12"] + ", " + comm["param_13"] + ", " + comm["param_14"] + ", " + comm["param_15"] + ", " + comm["param_16"] + "\n"
+            elif commande == "slide2PositionOffset":
+                rendu = rendu + deb + "slide2PositionOffset " + comm["param"] + ", y = " + comm["y"] + ", x = " + comm["x"] + "\n"
+            elif commande == "move3PositionOffset":
+                rendu = rendu + deb + "slide2PositionOffset " + comm["param"] + ", y = " + comm["y"] + ", x = " + comm["x"] + "\n"
+            elif commande == "moveTurn":
+                rendu = rendu + deb + "moveTurn " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
+            elif commande == "turn2directionLives2":
+                rendu = rendu + deb + "turn2directionLives2 " + comm["param"] + "," + comm["param_1"] + "," + comm["param_2"] + "\n"
+            elif commande == "waitLockSupervision":
+                rendu = rendu + deb + "waitLockSupervision " + comm["param"] + "\n"
+            elif commande == "moveSpecial":
+                rendu = rendu + deb + "moveSpecial " + comm["param"] + "," + comm["param_1"] + "," + comm["param_2"] + "\n"
+            elif commande == "call":
+                rendu = rendu + deb + "call lroutineid " + comm["lroutineid"] + "\n"
+            elif commande == "return":
+                rendu = rendu + deb + "return\n"
             else:
                 print("commande inconnu : " + commande)
                 #error
@@ -545,3 +587,4 @@ if __name__ == "__main__":
     for loop in os.listdir("export/scripts/"):
         if loop != "COMMON.xml":
             getWrited("export/scripts/"+loop,to)
+    #getWrited("export/scripts/T00P01.xml",to)
