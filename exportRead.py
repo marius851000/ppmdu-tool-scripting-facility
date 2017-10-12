@@ -1,7 +1,6 @@
 from lxml import etree
 def getData(file):
-    uncompilerversion = "0.0.0.4.1" #objectif : list all code, then, goto 0.1.x
-    #0.2 pour le reste des script ( TODO et common )
+    uncompilerversion = "0.1.3"
     temp = open(file,"r")
     xml = temp.read()
     temp.close()
@@ -1151,7 +1150,7 @@ def getData(file):
                         obj = {"commande" : "back2SetWeather",
                             "param" : command.get("param")}
                         funcl.append(obj)
-                    elif tag == "back_SetBanner2":
+                    elif tag == "back_SetBanner":
                         caset = []
                         for lang in command:
                             caset.append([lang.get("language"),lang.text])

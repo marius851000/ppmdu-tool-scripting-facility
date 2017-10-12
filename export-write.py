@@ -1,4 +1,3 @@
-
 import exportRead
 import os
 import shutil
@@ -6,7 +5,7 @@ import time
 import sys
 
 def getWrited(original,to):
-    version = "0.0.2.2"#objectif : list all code, then, goto 0.1.x
+    version = "0.1.3"
     subdir = to + original.split("/")[len(original.split("/"))-1]
     try:
         shutil.rmtree(subdir)
@@ -561,7 +560,7 @@ def toCode(fonction):
                 rendu = rendu + deb + "call lroutineid " + comm["lroutineid"] + "\n"
             elif commande == "return":
                 rendu = rendu + deb + "return\n"
-            elif commande == "Slide3PositionOffset":
+            elif commande == "slide3PositionOffset":
                 rendu = rendu + deb + "slide3PositionOffset " + comm["param"] + ", y = " + comm["y"] + ", x = " + comm["x"] + "\n"
             elif commande == "back2SetWeather":
                 rendu = rendu + deb + "back2SetWeather " + comm["param"] + "\n"
@@ -573,7 +572,8 @@ def toCode(fonction):
                 rendu = rendu + deb + "backSetWeatherEffect " + comm["param"] + "\n"
             elif commande == "worldmapOffMessage":
                 rendu = rendu + deb + "worldmapOffMessage\n"
-
+            elif commande == "moveDirection":
+                rendu = rendu + deb + "moveDirection " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
 
             else:
                 print("commande inconnu : " + commande)
