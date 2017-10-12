@@ -1141,6 +1141,37 @@ def getData(file):
                     elif tag == "Return":
                         obj = {"commande" : "return"}
                         funcl.append(obj)
+                    elif tag=="Slide3PositionOffset":
+                        obj = {"commande" : "slide3PositionOffset",
+                            "param" : command.get("param"),
+                            "x" : command.get("x"),
+                            "y" : command.get("y")}
+                        funcl.append(obj)
+                    elif tag=="back2_SetWeather":
+                        obj = {"commande" : "back2SetWeather",
+                            "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "back_SetBanner2":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "backSetBanner",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "back_SetTitleBanner":
+                        caset = []
+                        for lang in command:
+                            caset.append([lang.get("language"),lang.text])
+                        obj = {"commande" : "backSetTitleBanner",
+                               "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "back_SetWeatherEffect":
+                        obj = {"commande" : "backSetWeatherEffect",
+                            "param" : command.get("param")}
+                        funcl.append(obj)
+                    elif tag == "worldmap_OffMessage":
+                        obj = {"commande" : "worldmapOffMessage"}
+                        funcl.append(obj)
                     else:
                         print("tag inconnu : " + tag)
                         #error

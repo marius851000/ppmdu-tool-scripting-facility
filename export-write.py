@@ -1,3 +1,4 @@
+
 import exportRead
 import os
 import shutil
@@ -42,7 +43,6 @@ def getWrited(original,to):
         except:
             pass#TODO : research about this error
         nsub = subdir + "/" + pname
-        print(nsub)
         temp = open(nsub + "/script.pms", "w")
         temp.write(toCode(loop))
         temp.close()
@@ -168,7 +168,7 @@ def toCode(fonction):
             elif commande == "bgmFadeOut":
                 rendu = rendu + deb + "bgmFadeOut " + comm["duration"] + "\n"
             elif commande == "backSetBanner2":
-                rendu = rendu + deb + "backSetBanner2 " + comm["param"] + ", " + comm["param_1"] + ", x = " + comm["x"] + ", y = " + comm["y"] + ", " + comm["param_4"] + "\n"
+                rendu = rendu + deb + "backSetBanner2 " + comm["param"] + ", " + comm["param_1"] + ", x = " + comm["x"] + ", y = " + comm["y"] + ", " + comm["param_4"] + "\n" # REVIEW:
             elif commande == "flagSetScenario":
                 rendu = rendu + deb + "flagSetScenario svar = " + comm["svar"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
             elif commande == "messageSwitchMonologue":
@@ -561,6 +561,20 @@ def toCode(fonction):
                 rendu = rendu + deb + "call lroutineid " + comm["lroutineid"] + "\n"
             elif commande == "return":
                 rendu = rendu + deb + "return\n"
+            elif commande == "Slide3PositionOffset":
+                rendu = rendu + deb + "slide3PositionOffset " + comm["param"] + ", y = " + comm["y"] + ", x = " + comm["x"] + "\n"
+            elif commande == "back2SetWeather":
+                rendu = rendu + deb + "back2SetWeather " + comm["param"] + "\n"
+            elif commande == "backSetBanner":
+                rendu = rendu + deb + "backSetBanner " + comm["param"] + ":\n"# TODO: multiple
+            elif commande == "backSetTitleBanner":
+                rendu = rendu + deb + "backSetTitleBanner " + comm["param"] + ":\n"# TODO: multiple
+            elif commande == "backSetWeatherEffect":
+                rendu = rendu + deb + "backSetWeatherEffect " + comm["param"] + "\n"
+            elif commande == "worldmapOffMessage":
+                rendu = rendu + deb + "worldmapOffMessage\n"
+
+
             else:
                 print("commande inconnu : " + commande)
                 #error
@@ -584,7 +598,12 @@ if __name__ == "__main__":
         pass
     to = "rendu/"
 
-    for loop in os.listdir("export/scripts/"):
+    listeDuDir = os.listdir("export/scripts/")
+    lenlisteDuDir = len(listeDuDir)
+    counter = 0
+    for loop in listeDuDir:
+        counter = counter + 1
+        print(str(counter) + "/" + str(lenlisteDuDir))
         if loop != "COMMON.xml":
             getWrited("export/scripts/"+loop,to)
     #getWrited("export/scripts/T00P01.xml",to)
