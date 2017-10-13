@@ -84,6 +84,17 @@ def toCode(fonction):
                     lcommande = lcomm["lcommande"]
                     if lcommande == "turn2Direction":
                         rendu = rendu + deb + deb + "turn2Direction " + lcomm["param"] + ", " + lcomm["param_1"] + ", direction = " + lcomm["direction"] + "\n"
+                    elif lcommande == "move2PositionMark":
+                        rendu = rendu + deb + deb + "move2PositionMark " + lcomm["param"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + ", " + lcomm["param_4"] + "\n"
+                    elif lcommande == "movePositionMark":
+                        rendu = rendu + deb + deb + "movePositionMark " + lcomm["param"] + ", " + lcomm["param_2"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                    elif lcommande == "executeCommon":
+                        rendu = rendu + deb + deb + "executeCommon croutineid = " + lcomm["croutineid"] + ", " + lcomm["param_1"] + "\n"
+                    elif lcommande == "turn2DirectionLives":
+                        rendu = rendu + deb + deb + "turn2DirectionLives " + lcomm["param"] + ", " + lcomm["param_1"] + ", actorid = " + lcomm["actorid"] + "\n"
+                    elif lcommande == "setEffect":
+                        rendu = rendu + deb + deb + "setEffect " + lcomm["param"] + ", " + lcomm["param_1"] + "\n"
+
                     else:
                         rendu = rendu + deb + deb + "inconnu\n"
                         print("live non traité : " + lcommande)

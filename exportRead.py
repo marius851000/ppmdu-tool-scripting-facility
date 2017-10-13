@@ -132,6 +132,34 @@ def getData(file):
                                     "param" : lcommand.get("param"),
                                     "param_1" : lcommand.get("param_1"),
                                     "direction" : lcommand.get("direction")})
+                            elif ltag == "Move2PositionMark":
+                                inlive.append({"lcommande":"move2PositionMark",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2"),
+                                    "param_3" : lcommand.get("param_3"),
+                                    "param_4" : lcommand.get("param_4")})
+                            elif ltag == "MovePositionMark":
+                                inlive.append({"lcommande":"movePositionMark",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2"),
+                                    "x" : lcommand.get("x"),
+                                    "y" : lcommand.get("y")})
+                            elif ltag == "ExecuteCommon":
+                                inlive.append({"lcommande" : "executeCommon",
+                                    "croutineid" : lcommand.get("croutineid"),
+                                    "param_1" : lcommand.get("param_1")})
+                            elif ltag == "Turn2DirectionLives":
+                                inlive.append({"lcommande" : "turn2DirectionLives",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "actorid" : lcommand.get("actorid")})
+                            elif ltag == "SetEffect":
+                                inlive.append({"lcommande" : "setEffect",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1")})
+
                             else:
                                 print("live inconnue : " + ltag)
                         obj = {"commande" : "lives",
