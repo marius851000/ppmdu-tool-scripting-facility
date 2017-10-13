@@ -601,9 +601,9 @@ if __name__ == "__main__":
     listeDuDir = os.listdir("export/scripts/")
     lenlisteDuDir = len(listeDuDir)
     counter = 0
-    #for loop in listeDuDir:
-    #    counter = counter + 1
-    #    print(str(counter) + "/" + str(lenlisteDuDir))
-    #    if loop != "COMMON.xml":
-    #        getWrited("export/scripts/"+loop,to)
-    getWrited("export/scripts/D16P31A.xml",to)
+    for loop in listeDuDir:
+        counter = counter + 1
+        print(str(counter) + "/" + str(lenlisteDuDir))
+        if loop != "COMMON.xml":
+            getWrited("export/scripts/"+loop,to)
+    #getWrited("export/scripts/D16P31A.xml",to)
