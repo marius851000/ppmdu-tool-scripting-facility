@@ -4,7 +4,11 @@ import shutil
 import time
 import sys
 
+_debug = True
+
 def getWrited(original,to):
+    if _debug:
+        print(original)
     version = "0.1.3"
     subdir = to + original.split("/")[len(original.split("/"))-1]
     try:
@@ -19,6 +23,7 @@ def getWrited(original,to):
             end = True
         except:
             time.sleep(1)
+            print("can not make subdir")
 
     data = exportRead.getData(original)
     LSD = ""
@@ -75,7 +80,14 @@ def toCode(fonction):
                 rendu = rendu + deb + "screen2FadeOut duration = " + comm["duration"] + ", bool = " + boole + "\n"
             elif commande == "lives":
                 rendu = rendu + deb + "lives " + comm["actorid"] + ":\n"
-                rendu = rendu + deb + deb + "TODO\n"
+                for lcomm in comm["in"]:
+                    lcommande = lcomm["lcommande"]
+                    if lcommande == "turn2Direction":
+                        rendu = rendu + deb + deb + "turn2Direction " + lcomm["param"] + ", " + lcomm["param_1"] + ", direction = " + lcomm["direction"] + "\n"
+                    else:
+                        rendu = rendu + deb + deb + "inconnu\n"
+                        print("live non traité : " + lcommande)
+
             elif commande == "messageClose":
                 rendu = rendu + deb + "messageClose\n"
             elif commande == "messageSwitchTalk":

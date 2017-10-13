@@ -128,14 +128,15 @@ def getData(file):
                         for lcommand in command:
                             ltag = lcommand.tag
                             if ltag == "Turn2Direction":
-                                inlive.append({"lcommande":"Turn2Direction",
+                                inlive.append({"lcommande":"turn2Direction",
                                     "param" : lcommand.get("param"),
                                     "param_1" : lcommand.get("param_1"),
                                     "direction" : lcommand.get("direction")})
-                        print(inlive)
+                            else:
+                                print("live inconnue : " + ltag)
                         obj = {"commande" : "lives",
                                "actorid" : command.get("actorid"),
-                               "in" : "TODO"}#TODO : in
+                               "in" : inlive}#TODO : in
                         funcl.append(obj)
                     elif tag == "WaitExecuteLives":
                         obj = {"commande" : "waitExecuteLives",
