@@ -124,6 +124,15 @@ def getData(file):
                                "croutineid" : command.get("croutineid")}
                         funcl.append(obj)
                     elif tag == "lives":
+                        inlive = []
+                        for lcommand in command:
+                            ltag = lcommand.tag
+                            if ltag == "Turn2Direction":
+                                inlive.append({"lcommande":"Turn2Direction",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "direction" : lcommand.get("direction")})
+                        print(inlive)
                         obj = {"commande" : "lives",
                                "actorid" : command.get("actorid"),
                                "in" : "TODO"}#TODO : in
