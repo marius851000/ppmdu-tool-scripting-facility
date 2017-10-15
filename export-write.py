@@ -94,9 +94,17 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "turn2DirectionLives " + lcomm["param"] + ", " + lcomm["param_1"] + ", actorid = " + lcomm["actorid"] + "\n"
                     elif lcommande == "setEffect":
                         rendu = rendu + deb + deb + "setEffect " + lcomm["param"] + ", " + lcomm["param_1"] + "\n"
-
+                    elif lcommande == "waitEffect":
+                        rendu = rendu + deb + deb + "waitEffect\n"
+                    elif lcommande == "setAnimation":
+                        rendu = rendu + deb + deb + "setAnimation animid = " + lcomm.get("animid") + "\n"
+                    elif lcommande == "slidePositionMark":
+                        rendu = rendu + deb + deb + "slidePositionMark " + lcomm["param"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + ", " + lcomm["param_4"] + "\n"
+                    #elif lcommande == "setFunctionAttribute":
+                    #    rendu = rendu + deb + deb + "setFunctionAttribute " + lcomm[""]
+                    # TODO: ce live
                     else:
-                        rendu = rendu + deb + deb + "inconnu\n"
+                        rendu = rendu + deb + deb + "live inconnu\n"
                         print("live non traité : " + lcommande)
 
             elif commande == "messageClose":
@@ -624,9 +632,9 @@ if __name__ == "__main__":
     listeDuDir = os.listdir("export/scripts/")
     lenlisteDuDir = len(listeDuDir)
     counter = 0
-    #for loop in listeDuDir:
-    #    counter = counter + 1
-    #    print(str(counter) + "/" + str(lenlisteDuDir))
-    #    if loop != "COMMON.xml":
-    #        getWrited("export/scripts/"+loop,to)
-    getWrited("export/scripts/D16P31A.xml",to)
+    for loop in listeDuDir:
+        counter = counter + 1
+        print(str(counter) + "/" + str(lenlisteDuDir))
+        if loop != "COMMON.xml":
+            getWrited("export/scripts/"+loop,to)
+    #getWrited("export/scripts/D16P31A.xml",to)

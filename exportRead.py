@@ -159,9 +159,24 @@ def getData(file):
                                 inlive.append({"lcommande" : "setEffect",
                                     "param" : lcommand.get("param"),
                                     "param_1" : lcommand.get("param_1")})
-
+                            elif ltag == "WaitEffect":
+                                inlive.append({"lcommande" : "waitEffect"})
+                            elif ltag == "SetAnimation":
+                                inlive.append({"lcommande" : "setAnimation",
+                                    "animid" : lcommand.get("animid")})
+                            elif ltag == "SlidePositionMark":
+                                inlive.append({"lcommande":"slidePositionMark",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2"),
+                                    "param_3" : lcommand.get("param_3"),
+                                    "param_4" : lcommand.get("param_4")})
+                            elif ltag == "SetFunctionAttribute":
+                                inlive.append({"lcommande" : "setFunctionAttribute",
+                                    "param" : command.get("param")})
                             else:
                                 print("live inconnue : " + ltag)
+                                inlive.append({"lcommande" : "inconnu"})
                         obj = {"commande" : "lives",
                                "actorid" : command.get("actorid"),
                                "in" : inlive}#TODO : in
