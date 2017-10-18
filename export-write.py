@@ -81,7 +81,7 @@ def toCode(fonction):
             elif commande == "lives":
                 rendu = rendu + deb + "lives " + comm["actorid"] + ":\n"
                 for lcomm in comm["in"]:
-                    #print(lcomm)
+                    print(lcomm)
                     lcommande = lcomm["lcommande"]
                     if lcommande == "turn2Direction":
                         rendu = rendu + deb + deb + "turn2Direction " + lcomm["param"] + ", " + lcomm["param_1"] + ", direction = " + lcomm["direction"] + "\n"
@@ -111,7 +111,10 @@ def toCode(fonction):
                     elif lcommande == "setDirection":
                         rendu = rendu + deb + deb + "setDirection direction = " + lcomm["direction"] + "\n"
                     elif lcommande == "movePositionOffset":
-                        rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                        if lcomm["x"]==None or lcomm["y"]==None:
+                            rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + "\n"
+                        else:
+                            rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "setPositionInitial":
                         rendu = rendu + deb + deb + "setPositionInitial\n"
                     elif lcommande == "waitAnimation":
