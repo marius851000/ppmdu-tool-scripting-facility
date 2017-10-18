@@ -88,7 +88,10 @@ def toCode(fonction):
                     elif lcommande == "move2PositionMark":
                         rendu = rendu + deb + deb + "move2PositionMark " + lcomm["param"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + ", " + lcomm["param_4"] + "\n"
                     elif lcommande == "movePositionMark":
-                        rendu = rendu + deb + deb + "movePositionMark " + lcomm["param"] + ", " + lcomm["param_2"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                        if lcomm["x"]==None or lcomm["y"]==None:
+                            rendu = rendu + deb + deb + "movePositionMark " + lcomm["param"] + ", " + lcomm["param_2"] +  "\n"
+                        else:
+                            rendu = rendu + deb + deb + "movePositionMark " + lcomm["param"] + ", " + lcomm["param_2"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "executeCommon":
                         rendu = rendu + deb + deb + "executeCommon croutineid = " + lcomm["croutineid"] + ", " + lcomm["param_1"] + "\n"
                     elif lcommande == "turn2DirectionLives":
@@ -129,6 +132,13 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "destroy\n"
                     elif lcommande == "resetOutputAttribute":
                         rendu = rendu + deb + deb + "resetOutputAttribute " + lcomm["param"] + "\n"
+                    elif lcommande == "moveHeight":
+                        rendu = rendu + deb + deb + "moveHeight " + lcomm["param"] + ", " + lcomm["param_1"] + "\n"
+                    elif lcommande == "setPositionOffset":
+                        rendu = rendu + deb + deb + "setPositionOffset " + lcomm["param"] + ", " + lcomm["param_1"] + "\n"
+                    elif lcommande == "resetFunctionAttribute":
+                        rendu = rendu + deb + deb + "resetFunctionAttribute " + lcomm["param"] + "\n"
+
                     else:
                         rendu = rendu + deb + deb + "live inconnu\n"
                         print("live non traité : " + lcommande)
@@ -658,11 +668,11 @@ if __name__ == "__main__":
     listeDuDir = os.listdir("export/scripts/")
     lenlisteDuDir = len(listeDuDir)
     counter = 0
-    if False:
+    if True:
         for loop in listeDuDir:
             print(str(counter) + "/" + str(lenlisteDuDir))
             counter = counter + 1
             if loop != "COMMON.xml":
                 getWrited("export/scripts/"+loop,to)
     else:
-        getWrited("export/scripts/D03P11A.xml",to)
+        getWrited("export/scripts/D10P41A.xml",to)

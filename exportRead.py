@@ -223,6 +223,18 @@ def getData(file):
                             elif ltag == "ResetOutputAttribute":
                                 inlive.append({"lcommande" : "resetOutputAttribute",
                                     "param" : lcommand.get("param")})
+                            elif ltag == "MoveHeight":
+                                inlive.append({"lcommande" : "moveHeight",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1")})
+                            elif ltag == "SetPositionOffset":
+                                inlive.append({"lcommande" : "setPositionOffset",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1")})
+                            elif ltag == "ResetFunctionAttribute":
+                                inlive.append({"lcommande" : "resetFunctionAttribute",
+                                    "param" : lcommand.get("param")})
+
                             else:
                                 print("live inconnue : " + ltag)
                                 inlive.append({"lcommande" : "inconnu"})
