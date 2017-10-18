@@ -192,6 +192,37 @@ def getData(file):
                                 inlive.append({"lcommande" : "setPositionInitial"})
                             elif ltag == "WaitAnimation":
                                 inlive.append({"lcommande" : "waitAnimation"})
+                            elif ltag == "SlidePositionOffset":
+                                inlive.append({"lcommande" : "slidePositionOffset",
+                                    "param" : lcommand.get("param"),
+                                    "x" : lcommand.get("x"),
+                                    "y" : lcommand.get("y")})
+                            elif ltag == "Move2PositionOffset":
+                                inlive.append({"lcommande" : "move2PositionOffset",
+                                    "param" : lcommand.get("param"),
+                                    "x" : lcommand.get("x"),
+                                    "y" : lcommand.get("y")})
+                            elif ltag == "SetOutputAttribute":
+                                inlive.append({"lcommande" : "setOutputAttribute",
+                                    "param" : lcommand.get("param")})
+                            elif ltag == "ResetHitAttribute":
+                                inlive.append({"lcommande" : "resetHitAttribute",
+                                    "param" : lcommand.get("param")})
+                            elif ltag == "Turn2DirectionTurn":
+                                inlive.append({"lcommande" : "turn2DirectionTurn",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2")})
+                            elif ltag == "Slide2PositionOffset":
+                                inlive.append({"lcommande" : "slide2PositionOffset",
+                                    "param" : lcommand.get("param"),
+                                    "x" : lcommand.get("x"),
+                                    "y" : lcommand.get("y")})
+                            elif ltag == "Destroy":
+                                inlive.append({"lcommande" : "destroy"})
+                            elif ltag == "ResetOutputAttribute":
+                                inlive.append({"lcommande" : "resetOutputAttribute",
+                                    "param" : lcommand.get("param")})
                             else:
                                 print("live inconnue : " + ltag)
                                 inlive.append({"lcommande" : "inconnu"})

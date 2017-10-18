@@ -113,6 +113,22 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setPositionInitial\n"
                     elif lcommande == "waitAnimation":
                         rendu = rendu + deb + deb + "waitAnimation\n"
+                    elif lcommande == "slidePositionOffset":
+                        rendu = rendu + deb + deb + "slidePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                    elif lcommande == "move2PositionOffset":
+                        rendu = rendu + deb + deb + "move2PositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                    elif lcommande == "setOutputAttribute":
+                        rendu = rendu + deb + deb + "setOutputAttribute " + lcomm["param"] + "\n"
+                    elif lcommande == "resetHitAttribute":
+                        rendu = rendu + deb + deb + "resetHitAttribute " + lcomm["param"] + "\n"
+                    elif lcommande == "turn2DirectionTurn":
+                        rendu = rendu + deb + deb + "turn2DirectionTurn " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + "\n"
+                    elif lcommande == "slide2PositionOffset":
+                        rendu = rendu + deb + deb + "slide2PositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                    elif lcommande == "destroy":
+                        rendu = rendu + deb + deb + "destroy\n"
+                    elif lcommande == "resetOutputAttribute":
+                        rendu = rendu + deb + deb + "resetOutputAttribute " + lcomm["param"] + "\n"
                     else:
                         rendu = rendu + deb + deb + "live inconnu\n"
                         print("live non traité : " + lcommande)
@@ -642,9 +658,11 @@ if __name__ == "__main__":
     listeDuDir = os.listdir("export/scripts/")
     lenlisteDuDir = len(listeDuDir)
     counter = 0
-    for loop in listeDuDir:
-        print(str(counter) + "/" + str(lenlisteDuDir))
-        counter = counter + 1
-        if loop != "COMMON.xml":
-            getWrited("export/scripts/"+loop,to)
-    #getWrited("export/scripts/D16P31A.xml",to)
+    if False:
+        for loop in listeDuDir:
+            print(str(counter) + "/" + str(lenlisteDuDir))
+            counter = counter + 1
+            if loop != "COMMON.xml":
+                getWrited("export/scripts/"+loop,to)
+    else:
+        getWrited("export/scripts/D03P11A.xml",to)
