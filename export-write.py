@@ -122,7 +122,10 @@ def toCode(fonction):
                     elif lcommande == "slidePositionOffset":
                         rendu = rendu + deb + deb + "slidePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "move2PositionOffset":
-                        rendu = rendu + deb + deb + "move2PositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                        if lcomm["x"]==None or lcomm["y"]==None:
+                            rendu = rendu + deb + deb + "move2PositionOffset " + lcomm["param"] + "\n"
+                        else:
+                            rendu = rendu + deb + deb + "move2PositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "setOutputAttribute":
                         rendu = rendu + deb + deb + "setOutputAttribute " + lcomm["param"] + "\n"
                     elif lcommande == "resetHitAttribute":
