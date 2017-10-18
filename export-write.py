@@ -81,6 +81,7 @@ def toCode(fonction):
             elif commande == "lives":
                 rendu = rendu + deb + "lives " + comm["actorid"] + ":\n"
                 for lcomm in comm["in"]:
+                    #print(lcomm)
                     lcommande = lcomm["lcommande"]
                     if lcommande == "turn2Direction":
                         rendu = rendu + deb + deb + "turn2Direction " + lcomm["param"] + ", " + lcomm["param_1"] + ", direction = " + lcomm["direction"] + "\n"
@@ -100,9 +101,18 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setAnimation animid = " + lcomm.get("animid") + "\n"
                     elif lcommande == "slidePositionMark":
                         rendu = rendu + deb + deb + "slidePositionMark " + lcomm["param"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + ", " + lcomm["param_4"] + "\n"
-                    #elif lcommande == "setFunctionAttribute":
-                    #    rendu = rendu + deb + deb + "setFunctionAttribute " + lcomm[""]
-                    # TODO: ce live
+                    elif lcommande == "setFunctionAttribute":
+                        rendu = rendu + deb + deb + "setFunctionAttribute " + lcomm["param"]+"\n"
+                    elif lcommande == "setPositionMark":
+                        rendu = rendu + deb + deb + "setPositionMark " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
+                    elif lcommande == "setDirection":
+                        rendu = rendu + deb + deb + "setDirection direction = " + lcomm["direction"] + "\n"
+                    elif lcommande == "movePositionOffset":
+                        rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                    elif lcommande == "setPositionInitial":
+                        rendu = rendu + deb + deb + "setPositionInitial\n"
+                    elif lcommande == "waitAnimation":
+                        rendu = rendu + deb + deb + "waitAnimation\n"
                     else:
                         rendu = rendu + deb + deb + "live inconnu\n"
                         print("live non traité : " + lcommande)
@@ -633,8 +643,8 @@ if __name__ == "__main__":
     lenlisteDuDir = len(listeDuDir)
     counter = 0
     for loop in listeDuDir:
-        counter = counter + 1
         print(str(counter) + "/" + str(lenlisteDuDir))
+        counter = counter + 1
         if loop != "COMMON.xml":
             getWrited("export/scripts/"+loop,to)
     #getWrited("export/scripts/D16P31A.xml",to)

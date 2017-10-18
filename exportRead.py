@@ -173,7 +173,25 @@ def getData(file):
                                     "param_4" : lcommand.get("param_4")})
                             elif ltag == "SetFunctionAttribute":
                                 inlive.append({"lcommande" : "setFunctionAttribute",
-                                    "param" : command.get("param")})
+                                    "param" : lcommand.get("param")})
+                            elif ltag == "SetPositionMark":
+                                inlive.append({"lcommande" : "setPositionMark",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2"),
+                                    "param_3" : lcommand.get("param_3")})
+                            elif ltag == "SetDirection":
+                                inlive.append({"lcommande" : "setDirection",
+                                    "direction" : lcommand.get("direction")})
+                            elif ltag == "MovePositionOffset":
+                                inlive.append({"lcommande" : "movePositionOffset",
+                                    "param" : lcommand.get("param"),
+                                    "x" : lcommand.get("x"),
+                                    "y" : lcommand.get("y")})
+                            elif ltag == "SetPositionInitial":
+                                inlive.append({"lcommande" : "setPositionInitial"})
+                            elif ltag == "WaitAnimation":
+                                inlive.append({"lcommande" : "waitAnimation"})
                             else:
                                 print("live inconnue : " + ltag)
                                 inlive.append({"lcommande" : "inconnu"})
