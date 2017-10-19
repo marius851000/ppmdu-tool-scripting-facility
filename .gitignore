@@ -2,6 +2,7 @@ rendu
 rom
 export
 rom-base.nds
-G01P01B.xml
 *.pyc
 rom-mod.nds
+nosync
+compiler_report.txt
