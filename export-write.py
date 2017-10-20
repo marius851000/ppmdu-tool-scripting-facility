@@ -5,6 +5,7 @@ import time
 import sys
 
 _debug = True
+_stopOnError = False
 
 def getWrited(original,to):
     if _debug:
@@ -112,7 +113,7 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setDirection direction = " + lcomm["direction"] + "\n"
                     elif lcommande == "movePositionOffset":
                         if lcomm["x"]==None or lcomm["y"]==None:
-                            rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + "\n"
+                            rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + "\n"
                         else:
                             rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "setPositionInitial":
@@ -120,7 +121,10 @@ def toCode(fonction):
                     elif lcommande == "waitAnimation":
                         rendu = rendu + deb + deb + "waitAnimation\n"
                     elif lcommande == "slidePositionOffset":
-                        rendu = rendu + deb + deb + "slidePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                        if lcomm["y"]==None and lcomm["x"]==None:
+                            rendu = rendu + deb + deb + "slidePositionOffset " + lcomm["param"] + "\n"
+                        else:
+                            rendu = rendu + deb + deb + "slidePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "move2PositionOffset":
                         if lcomm["x"]==None or lcomm["y"]==None:
                             rendu = rendu + deb + deb + "move2PositionOffset " + lcomm["param"] + "\n"
@@ -144,10 +148,17 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setPositionOffset " + lcomm["param"] + ", " + lcomm["param_1"] + "\n"
                     elif lcommande == "resetFunctionAttribute":
                         rendu = rendu + deb + deb + "resetFunctionAttribute " + lcomm["param"] + "\n"
-
+                    elif lcommande == "moveposition":
+                        rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
+                    elif lcommande == "turn3":
+                        rendu = rendu + deb + deb + "turn3 " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
                     else:
                         rendu = rendu + deb + deb + "live inconnu\n"
-                        print("live non traité : " + lcommande)
+                        print("erreur : live non traité : " + lcommande)
+                        print(lcomm)
+                        if _stopOnError:
+                            errore()
+
 
             elif commande == "messageClose":
                 rendu = rendu + deb + "messageClose\n"
@@ -160,6 +171,8 @@ def toCode(fonction):
                             rendu = rendu + deb + deb + deb + loop2[0] + " = \"\"\"" + loop2[1] + "\"\"\"\n"
                     else:
                         print("erreur : type non spécifié")
+                        if _stopOnError:
+                            errore()
                 rendu = rendu + deb + deb + "default:\n"
                 for loop in comm["default"]:
                     rendu = rendu + deb + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
@@ -252,6 +265,8 @@ def toCode(fonction):
                             rendu = rendu + deb + deb + deb + loop2[0] + " = \"\"\"" + loop2[1] + "\"\"\"\n"
                     else:
                         print("erreur : type non spécifié")
+                        if _stopOnError:
+                            errore()
                 rendu = rendu + deb + deb + "default:\n"
                 for loop in comm["default"]:
                     rendu = rendu + deb + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
@@ -649,7 +664,9 @@ def toCode(fonction):
                 rendu = rendu + deb + "moveDirection " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
 
             else:
-                print("commande inconnu : " + commande)
+                print("erreur : commande inconnu : " + commande)
+                if _stopOnError:
+                    errore()
                 #error
                 pass
 

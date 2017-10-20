@@ -234,9 +234,19 @@ def getData(file):
                             elif ltag == "ResetFunctionAttribute":
                                 inlive.append({"lcommande" : "resetFunctionAttribute",
                                     "param" : lcommand.get("param")})
-
+                            elif ltag == "MovePosition":
+                                inlive.append({"lcommande" : "moveposition",
+                                    "param" : lcommand.get("param"),
+                                    "x" : lcommand.get("x"),
+                                    "y" : lcommand.get("y")})
+                            elif ltag == "Turn3":
+                                inlive.append({"lcommande" : "turn3",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2"),
+                                    "param_3" : lcommand.get("param_3")})
                             else:
-                                print("live inconnue : " + ltag)
+                                print("erreur : live inconnue : " + ltag)
                                 inlive.append({"lcommande" : "inconnu"})
                         obj = {"commande" : "lives",
                                "actorid" : command.get("actorid"),
@@ -1286,7 +1296,7 @@ def getData(file):
                         obj = {"commande" : "worldmapOffMessage"}
                         funcl.append(obj)
                     else:
-                        print("tag inconnu : " + tag)
+                        print("erreur : tag inconnu : " + tag)
                         #error
                 fonc.append({"funcl": funcl,
                              "id" : funcid})
