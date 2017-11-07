@@ -245,6 +245,31 @@ def getData(file):
                                     "param_1" : lcommand.get("param_1"),
                                     "param_2" : lcommand.get("param_2"),
                                     "param_3" : lcommand.get("param_3")})
+                            elif ltag == "Hold":
+                                inlive.append({"lcommande" : "hold"})
+                            elif ltag == "SetOutputAttributeAndAnimation":
+                                inlive.append({"lcommande" : "setOutputAttributeAndAnimation",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2")})
+                            elif ltag == "PursueTurnLives":
+                                inlive.append({"lcommande" : "pursueTurnLives",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2"),
+                                    "param_3" : lcommand.get("param_3")})
+                            elif ltag == "PursueTurnLives2":
+                                inlive.append({"lcommande" : "pursueTurnLives2",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1"),
+                                    "param_2" : lcommand.get("param_2"),
+                                    "param_3" : lcommand.get("param_3")})
+                            elif ltag == "EndAnimation":
+                                inlive.append({"lcommande" : "endAnimation"})
+                            elif ltag == "SetBlink":
+                                inlive.appedn({"lcommande" : "setBlink",
+                                    "param" : lcommand.get("param"),
+                                    "param_1" : lcommand.get("param_1")})
                             else:
                                 print("erreur : live inconnue : " + ltag)
                                 inlive.append({"lcommande" : "inconnu"})

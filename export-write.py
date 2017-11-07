@@ -79,7 +79,7 @@ def toCode(fonction):
                 else:
                     boole = "False"
                 rendu = rendu + deb + "screen2FadeOut duration = " + comm["duration"] + ", bool = " + boole + "\n"
-            elif commande == "lives":
+            elif commande == "lives":#lives
                 rendu = rendu + deb + "lives " + comm["actorid"] + ":\n"
                 for lcomm in comm["in"]:
                     print(lcomm)
@@ -152,6 +152,19 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "turn3":
                         rendu = rendu + deb + deb + "turn3 " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
+                    elif lcommand == "hold":
+                        rendu = rendu + deb + deb + "hold\n"
+                    elif lcommand == "setOutputAttributeAndAnimation":
+                        rendu = rendu + deb + deb + "setOutputAttributeAndAnimation " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + "\n"
+                    elif lcommande == "pursueTurnLives":
+                        rendu = rendu + deb + deb + "pursueTurnLives " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
+                    elif lcommande == "pursueTurnLives2":
+                        rendu = rendu + deb + deb + "pursueTurnLives2 " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
+                    elif lcommand == "endAnimation":
+                        rendu = rendu + deb + deb + "endAnimation\n"
+                    elif lcommand == "setBlink":
+                        rendu = rendu + deb + deb + "setBlink " + lcomm["param"] + ", " + lcomm["param_1"] + "\n"
+
                     else:
                         rendu = rendu + deb + deb + "live inconnu\n"
                         print("erreur : live non traité : " + lcommande)
