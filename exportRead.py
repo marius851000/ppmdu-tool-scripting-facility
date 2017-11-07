@@ -247,8 +247,8 @@ def getData(file):
                                     "param_3" : lcommand.get("param_3")})
                             elif ltag == "Hold":
                                 inlive.append({"lcommande" : "hold"})
-                            elif ltag == "SetOutputAttributeAndAnimation":
-                                inlive.append({"lcommande" : "setOutputAttributeAndAnimation",
+                            elif ltag == "SetupOutputAttributeAndAnimation":
+                                inlive.append({"lcommande" : "SetupOutputAttributeAndAnimation",
                                     "param" : lcommand.get("param"),
                                     "param_1" : lcommand.get("param_1"),
                                     "param_2" : lcommand.get("param_2")})

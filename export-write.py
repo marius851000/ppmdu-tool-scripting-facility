@@ -154,8 +154,8 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "turn3 " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
                     elif lcommande == "hold":
                         rendu = rendu + deb + deb + "hold\n"
-                    elif lcommande == "setOutputAttributeAndAnimation":
-                        rendu = rendu + deb + deb + "setOutputAttributeAndAnimation " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + "\n"
+                    elif lcommande == "SetupOutputAttributeAndAnimation":
+                        rendu = rendu + deb + deb + "SetupOutputAttributeAndAnimation " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + "\n"
                     elif lcommande == "pursueTurnLives":
                         rendu = rendu + deb + deb + "pursueTurnLives " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
                     elif lcommande == "pursueTurnLives2":
