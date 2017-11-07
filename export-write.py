@@ -287,9 +287,20 @@ def toCode(fonction):
                 rendu = rendu + deb + "messageSetActor " + comm["actorid"] + "\n"
             elif commande == "cameraSetPositionMark":
                 rendu = rendu + deb + "cameraSetPositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + "\n"
-            elif commande == "object":
+            elif commande == "object":#object
                 rendu = rendu + deb + "object " + comm["objectid"] + ":\n"
-                rendu = rendu + deb + deb + "TODO\n"
+                for ocomm in comm["in"]:
+                    print(ocomm)
+                    ocommande = ocomm["ocommande"]
+                    if ocommande == "setOutputAttribute"):
+                        rendu = rendu + deb + deb + "setOutputAttribute " + ocomm["param"] + "\n"
+                    else:
+                        rendu = rendu + deb + deb + "objet inconnu\n"
+                        print("erreur : object non traité : " + ocommande)
+                        print(ocomm)
+                        if _stopOnError:
+                            errore()
+
             elif commande == "cameraSetEffect":
                 rendu = rendu + deb + "cameraSetEffect " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
             elif commande == "waitExecuteObject":
@@ -704,11 +715,11 @@ if __name__ == "__main__":
     listeDuDir = os.listdir("export/scripts/")
     lenlisteDuDir = len(listeDuDir)
     counter = 0
-    if True:
+    if False:
         for loop in listeDuDir:
             print(str(counter) + "/" + str(lenlisteDuDir))
             counter = counter + 1
             if loop != "COMMON.xml":
                 getWrited("export/scripts/"+loop,to)
     else:
-        getWrited("export/scripts/D10P41A.xml",to)
+        getWrited("export/scripts/D05P31A.xml",to)

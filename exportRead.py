@@ -308,9 +308,18 @@ def getData(file):
                                "actorid" : command.get("actorid")}
                         funcl.append(obj)
                     elif tag == "object":
+                        inobject = []
+                        for ocommand in command:
+                            otag = ocommand.tag
+                            if otag == "SetOutputAttribute":
+                                inobject.append({"ocommande" : "setOutputAttribute",
+                                    "param" : ocommand.get("param")})
+                            else:
+                                print("erreur : commande d'object inconnue : " + otag)
+                                inobject.append({"ocommande" : "inconnu"})
                         obj = {"commande" : "object",
                                "objectid" : command.get("objectid"),
-                               "in" : "TODO"}#TODO : in
+                               "in" : inobject}#TODO : in
                         funcl.append(obj)
                     elif tag == "se_Play":
                         obj = {"commande" : "sePlay",
