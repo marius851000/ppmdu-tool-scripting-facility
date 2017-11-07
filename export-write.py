@@ -10,7 +10,7 @@ _stopOnError = False
 def getWrited(original,to):
     if _debug:
         print(original)
-    version = "0.1.3"
+    version = "0.2.0"
     subdir = to + original.split("/")[len(original.split("/"))-1]
     try:
         shutil.rmtree(subdir)
