@@ -292,7 +292,7 @@ def toCode(fonction):
                 for ocomm in comm["in"]:
                     print(ocomm)
                     ocommande = ocomm["ocommande"]
-                    if ocommande == "setOutputAttribute"):
+                    if ocommande == ("setOutputAttribute"):
                         rendu = rendu + deb + deb + "setOutputAttribute " + ocomm["param"] + "\n"
                     else:
                         rendu = rendu + deb + deb + "objet inconnu\n"
@@ -715,7 +715,7 @@ if __name__ == "__main__":
     listeDuDir = os.listdir("export/scripts/")
     lenlisteDuDir = len(listeDuDir)
     counter = 0
-    if False:
+    if True:
         for loop in listeDuDir:
             print(str(counter) + "/" + str(lenlisteDuDir))
             counter = counter + 1
