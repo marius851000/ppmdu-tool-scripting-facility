@@ -267,7 +267,7 @@ def getData(file):
                             elif ltag == "EndAnimation":
                                 inlive.append({"lcommande" : "endAnimation"})
                             elif ltag == "SetBlink":
-                                inlive.appedn({"lcommande" : "setBlink",
+                                inlive.append({"lcommande" : "setBlink",
                                     "param" : lcommand.get("param"),
                                     "param_1" : lcommand.get("param_1")})
                             else:
