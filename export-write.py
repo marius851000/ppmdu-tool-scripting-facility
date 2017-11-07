@@ -152,17 +152,17 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "movePositionOffset " + lcomm["param"] + ", x = " + lcomm["x"] + ", y = " + lcomm["y"] + "\n"
                     elif lcommande == "turn3":
                         rendu = rendu + deb + deb + "turn3 " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
-                    elif lcommand == "hold":
+                    elif lcommande == "hold":
                         rendu = rendu + deb + deb + "hold\n"
-                    elif lcommand == "setOutputAttributeAndAnimation":
+                    elif lcommande == "setOutputAttributeAndAnimation":
                         rendu = rendu + deb + deb + "setOutputAttributeAndAnimation " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + "\n"
                     elif lcommande == "pursueTurnLives":
                         rendu = rendu + deb + deb + "pursueTurnLives " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
                     elif lcommande == "pursueTurnLives2":
                         rendu = rendu + deb + deb + "pursueTurnLives2 " + lcomm["param"] + ", " + lcomm["param_1"] + ", " + lcomm["param_2"] + ", " + lcomm["param_3"] + "\n"
-                    elif lcommand == "endAnimation":
+                    elif lcommande == "endAnimation":
                         rendu = rendu + deb + deb + "endAnimation\n"
-                    elif lcommand == "setBlink":
+                    elif lcommande == "setBlink":
                         rendu = rendu + deb + deb + "setBlink " + lcomm["param"] + ", " + lcomm["param_1"] + "\n"
 
                     else:
