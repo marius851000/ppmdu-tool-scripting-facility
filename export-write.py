@@ -294,6 +294,10 @@ def toCode(fonction):
                     ocommande = ocomm["ocommande"]
                     if ocommande == ("setOutputAttribute"):
                         rendu = rendu + deb + deb + "setOutputAttribute " + ocomm["param"] + "\n"
+                    elif ocommande == "move2PositionOffset":
+                        rendu = rendu + deb + deb + "move2PositionOffset " + ocomm["param"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
+                    elif ocommande == "moveHeight":
+                        rendu = rendu + deb + deb + "moveHeight " + ocomm["param"] + ", " + ocomm["param_1"] + "\n"
                     else:
                         rendu = rendu + deb + deb + "objet inconnu\n"
                         print("erreur : object non traité : " + ocommande)

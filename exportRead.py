@@ -314,6 +314,15 @@ def getData(file):
                             if otag == "SetOutputAttribute":
                                 inobject.append({"ocommande" : "setOutputAttribute",
                                     "param" : ocommand.get("param")})
+                            elif otag == "Move2PositionOffset":
+                                inobject.append({"ocommande" : "move2PositionOffset",
+                                    "param" : ocommand.get("param"),
+                                    "x" : ocommand.get("x"),
+                                    "y" : ocommand.get("y")})
+                            elif otag == "MoveHeight":
+                                inobject.append({"ocommande" : "moveHeight",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1")})
                             else:
                                 print("erreur : commande d'object inconnue : " + otag)
                                 inobject.append({"ocommande" : "inconnu"})
