@@ -3,7 +3,9 @@ import os
 import shutil
 import time
 import sys
+import threading
 
+_multi = True
 _debug = True
 _stopOnError = False
 
@@ -82,7 +84,7 @@ def toCode(fonction):
             elif commande == "lives":#lives
                 rendu = rendu + deb + "lives " + comm["actorid"] + ":\n"
                 for lcomm in comm["in"]:
-                    print(lcomm)
+                    #print(lcomm)
                     lcommande = lcomm["lcommande"]
                     if lcommande == "turn2Direction":
                         rendu = rendu + deb + deb + "turn2Direction " + lcomm["param"] + ", " + lcomm["param_1"] + ", direction = " + lcomm["direction"] + "\n"
@@ -290,7 +292,7 @@ def toCode(fonction):
             elif commande == "object":#object
                 rendu = rendu + deb + "object " + comm["objectid"] + ":\n"
                 for ocomm in comm["in"]:
-                    print(ocomm)
+                    #print(ocomm)
                     ocommande = ocomm["ocommande"]
                     if ocommande == ("setOutputAttribute"):
                         rendu = rendu + deb + deb + "setOutputAttribute " + ocomm["param"] + "\n"
@@ -719,11 +721,25 @@ if __name__ == "__main__":
     listeDuDir = os.listdir("export/scripts/")
     lenlisteDuDir = len(listeDuDir)
     counter = 0
+
     if True:
+        threads=[]
         for loop in listeDuDir:
             print(str(counter) + "/" + str(lenlisteDuDir))
             counter = counter + 1
             if loop != "COMMON.xml":
-                getWrited("export/scripts/"+loop,to)
+                if _multi:
+                    t = threading.Thread(target=getWrited, args=("export/scripts/"+loop,to,))
+                    threads.append(t)
+                    t.start()
+                else:
+                    getWrited("export/scripts/"+loop,to)
+        if _multi:
+            counter=0
+            for loop in threads:
+                loop.join()
+                counter=counter+1
+                print("fin de l'attente " + str(counter) + "/" + len(threads))
+        print("end")
     else:
         getWrited("export/scripts/D05P31A.xml",to)
