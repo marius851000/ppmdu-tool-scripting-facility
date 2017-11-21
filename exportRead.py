@@ -323,6 +323,23 @@ def getData(file):
                                 inobject.append({"ocommande" : "moveHeight",
                                     "param" : ocommand.get("param"),
                                     "param_1" : ocommand.get("param_1")})
+                            elif otag == "MovePositionOffset":
+                                inobject.append({"ocommande" : "movePositionOffset",
+                                    "param" : ocommand.get("param"),
+                                    "x" : ocommand.get("x"),
+                                    "y" : ocommand.get("y")})
+                            elif otag == "MovePositionMark":
+                                inobject.append({"ocommande" : "movePositionMark",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1"),
+                                    "param_2" : ocommand.get("param_2"),
+                                    "x" : ocommand.get("x"),
+                                    "y" : ocommand.get("y")})
+                            elif otag == "Destroy":
+                                inobject.append({"ocommande":"destroy"})
+                            elif otag == "SetAnimation":
+                                inobject.append({"ocommande":"setAnimation",
+                                    "animid" : ocommand.get("animid")})
                             else:
                                 print("erreur : commande d'object inconnue : " + otag)
                                 inobject.append({"ocommande" : "inconnu"})

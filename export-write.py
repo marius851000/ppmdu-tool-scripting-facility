@@ -300,6 +300,14 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "move2PositionOffset " + ocomm["param"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
                     elif ocommande == "moveHeight":
                         rendu = rendu + deb + deb + "moveHeight " + ocomm["param"] + ", " + ocomm["param_1"] + "\n"
+                    elif ocommande == "movePositionOffset":
+                        rendu = rendu + deb + deb + "movePositionOffset " + ocomm["param"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
+                    elif ocommande == "movePositionMark":
+                        rendu = rendu + deb + deb + "movePositionMark " + ocomm["param"] + ", " + ocomm["param_1"] + ", " + ocomm["param_2"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
+                    elif ocommande == "destroy":
+                        rendu = rendu + deb + deb + "destroy\n"
+                    elif ocommande == "setAnimation":
+                        rendu = rendu + deb + deb + "setAnimation animid = " + ocomm.get("animid") + "\n"
                     else:
                         rendu = rendu + deb + deb + "objet inconnu\n"
                         print("erreur : object non traité : " + ocommande)
@@ -742,4 +750,4 @@ if __name__ == "__main__":
                 print("fin de l'attente " + str(counter) + "/" + len(threads))
         print("end")
     else:
-        getWrited("export/scripts/D05P31A.xml",to)
+        getWrited("export/scripts/D01P11B.xml",to)
