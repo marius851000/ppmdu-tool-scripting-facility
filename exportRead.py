@@ -340,6 +340,12 @@ def getData(file):
                             elif otag == "SetAnimation":
                                 inobject.append({"ocommande":"setAnimation",
                                     "animid" : ocommand.get("animid")})
+                            elif otag == "SetPositionMark":
+                                inobject.append({"ocommande" : "setPositionMark",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1"),
+                                    "param_2" : ocommand.get("param_2"),
+                                    "param_3" : ocommand.get("param_3")})
                             else:
                                 print("erreur : commande d'object inconnue : " + otag)
                                 inobject.append({"ocommande" : "inconnu"})

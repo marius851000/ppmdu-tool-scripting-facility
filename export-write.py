@@ -307,7 +307,9 @@ def toCode(fonction):
                     elif ocommande == "destroy":
                         rendu = rendu + deb + deb + "destroy\n"
                     elif ocommande == "setAnimation":
-                        rendu = rendu + deb + deb + "setAnimation animid = " + ocomm.get("animid") + "\n"
+                        rendu = rendu + deb + deb + "setAnimation animid = " + ocomm["animid"] + "\n"
+                    elif ocommande == "setPositionMark":
+                        rendu = rendu + deb + deb + "setPositionMark " + ocomm["param"] + ", " + ocomm["param_1"] + ", " + ocomm["param_2"] + ", " + ocomm["param_3"] + "\n"
                     else:
                         rendu = rendu + deb + deb + "objet inconnu\n"
                         print("erreur : object non traité : " + ocommande)
