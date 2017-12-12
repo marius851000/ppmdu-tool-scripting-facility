@@ -353,6 +353,31 @@ def getData(file):
                                     "param_2" : ocommand.get("param_2")})
                             elif otag == "WaitAnimation":
                                 inobject.append({"ocommande" : "waitAnimation"})
+                            elif otag == "SetHeight":
+                                inobject.append({"ocommande" : "setHeight",
+                                    "param" : ocommand.get("param")})
+                            elif otag == "Move2PositionMark":
+                                inobject.append({"ocommande":"move2PositionMark",
+                                    "param":ocommand.get("param"),
+                                    "param_1":ocommand.get("param_1"),
+                                    "param_2":ocommand.get("param_2"),
+                                    "param_3":ocommand.get("param_3"),
+                                    "param_4":ocommand.get("param_4")})
+                            elif otag == "Slide2PositionOffset":
+                                inobject.append({"ocommande" : "slide2PositionOffset",
+                                    "param" : ocommand.get("param"),
+                                    "x" : ocommand.get("x"),
+                                    "y" : ocommand.get("y")})
+                            elif otag == "SetPositionLives":
+                                inobject.append({"ocommande" : "setPositionLives",
+                                    "param" : ocommand.get("param")})
+                            elif otag == "SetPositionOffset":
+                                inobject.append({"ocommande" : "setPositionOffset",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1")})
+                            elif otag == "ResetOutputAttribute":
+                                inobject.append({"ocommande" : "resetOutputAttribute",
+                                    "param" : ocommand.get("param")})
                             else:
                                 print("erreur : commande d'object inconnue : " + otag)
                                 inobject.append({"ocommande" : "inconnu"})

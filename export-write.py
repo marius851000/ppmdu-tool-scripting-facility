@@ -314,6 +314,16 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setupOutputAttributeAndAnimation " + ocomm["param"] + ", " + ocomm["param_1"] + ", " + ocomm["param_2"] + "\n"
                     elif ocommande == "waitAnimation":
                         rendu = rendu + deb + deb + "waitAnimation\n"
+                    elif ocommande == "setHeight":
+                        rendu = rendu + deb + deb + "setHeight " + ocomm["param"] + "\n"
+                    elif ocommande == "move2PositionMark":
+                        rendu = rendu + deb + deb + "move2PositionMark " + ocomm["param"] + ", " + ocomm["param_1"] + ", " + ocomm["param_2"] + ", " + ocomm["param_3"] + ", " + ocomm["param_4"] + "\n"
+                    elif ocommande == "slide2PositionOffset":
+                        rendu = rendu + deb + deb + ocomm["param"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
+                    elif ocommande == "setPositionLives":
+                        rendu = rendu + deb + deb + "setPositionLives " + ocomm["param"] + "\n"
+                    elif ocommande == "resetOutputAttribute":
+                        rendu = rendu + deb + deb + "resetOutputAttribute " + ocomm["param"] + "\n"
                     else:
                         rendu = rendu + deb + deb + "objet inconnu\n"
                         print("erreur : object non traité : " + ocommande)
