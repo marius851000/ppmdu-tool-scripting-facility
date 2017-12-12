@@ -346,6 +346,13 @@ def getData(file):
                                     "param_1" : ocommand.get("param_1"),
                                     "param_2" : ocommand.get("param_2"),
                                     "param_3" : ocommand.get("param_3")})
+                            elif otag == "SetupOutputAttributeAndAnimation":
+                                inobject.append({"ocommande" : "setupOutputAttributeAndAnimation",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1"),
+                                    "param_2" : ocommand.get("param_2")})
+                            elif otag == "WaitAnimation":
+                                inobject.append({"ocommande" : "waitAnimation"})
                             else:
                                 print("erreur : commande d'object inconnue : " + otag)
                                 inobject.append({"ocommande" : "inconnu"})

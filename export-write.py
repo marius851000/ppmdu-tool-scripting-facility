@@ -5,7 +5,7 @@ import time
 import sys
 import threading
 
-_multi = True
+_multi = False
 _debug = True
 _stopOnError = False
 
@@ -20,7 +20,7 @@ def getWrited(original,to):
         pass
     inc = 0
     end = False
-    while (not end) and inc < 100:
+    while (not end) and inc < 10:
         try:
             os.mkdir(subdir)
             end = True
@@ -258,7 +258,7 @@ def toCode(fonction):
                 for loop in comm["text"]:
                     rendu = rendu + deb + deb + loop[0] + " = \"\"\"" + loop[1] + "\"\"\"\n"
             elif commande == "camera2SetPositionMark":
-                rendu = rendu + deb + "camera2SetPositionMark " + comm["param"] + " " + comm["param_1"] + " " + comm["param_2"] + " " + comm["param_3"] + "\n"
+                rendu = rendu + deb + "camera2SetPositionMark " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + ", " + comm["param_3"] + "\n"
             elif commande == "supervisionRemoveActing":
                 rendu = rendu + deb + "supervisionRemoveActing " + comm["layerid"] + "\n"
             elif commande == "waitExecutePerformer":
@@ -310,6 +310,10 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setAnimation animid = " + ocomm["animid"] + "\n"
                     elif ocommande == "setPositionMark":
                         rendu = rendu + deb + deb + "setPositionMark " + ocomm["param"] + ", " + ocomm["param_1"] + ", " + ocomm["param_2"] + ", " + ocomm["param_3"] + "\n"
+                    elif ocommande == "setupOutputAttributeAndAnimation":
+                        rendu = rendu + deb + deb + "setupOutputAttributeAndAnimation " + ocomm["param"] + ", " + ocomm["param_1"] + ", " + ocomm["param_2"] + "\n"
+                    elif ocommande == "waitAnimation":
+                        rendu = rendu + deb + deb + "waitAnimation\n"
                     else:
                         rendu = rendu + deb + deb + "objet inconnu\n"
                         print("erreur : object non traité : " + ocommande)
