@@ -324,6 +324,18 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setPositionLives " + ocomm["param"] + "\n"
                     elif ocommande == "resetOutputAttribute":
                         rendu = rendu + deb + deb + "resetOutputAttribute " + ocomm["param"] + "\n"
+                    elif ocommande == "setPositionOffset":
+                        rendu = rendu + deb + deb + "setPositionOffset " + ocomm["param"] + ", " + ocomm["param_1"] + "\n"
+                    elif ocommande == "slidePositionMark":
+                        rendu = rendu + deb + deb + "slidePositionMark " + ocomm["param"] + ", " + ocomm["param_1"] + ", " + ocomm["param_2"] + ", " + ocomm["param_3"] + ", " + ocomm["param_4"] + "\n"
+                    elif ocommande == "movePositionLives":
+                        rendu = rendu + deb + deb + "movePositionMark " + ocomm["param"] + ", " + ocomm["param_1"] + "\n"
+                    elif ocommande == "endAnimation":
+                        rendu = rendu + deb + deb + "endAnimation\n"
+                    elif ocommande == "slidePositionOffset":
+                        rendu = rendu + deb + deb + "slidePositionOffset " + comm["param"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
+                    elif ocommande == "cameraSetMyself":
+                        rendu = rendu + deb + deb + "cameraSetMyself\n"
                     else:
                         rendu = rendu + deb + deb + "objet inconnu\n"
                         print("erreur : object non traité : " + ocommande)

@@ -378,12 +378,36 @@ def getData(file):
                             elif otag == "ResetOutputAttribute":
                                 inobject.append({"ocommande" : "resetOutputAttribute",
                                     "param" : ocommand.get("param")})
+                            elif otag == "SetPositionOffset":
+                                inobject.append({"ocommande":"setPositionOffset",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1")})
+                            elif otag == "SlidePositionMark":
+                                inobject.append({"ocommande" : "slidePositionMark",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1"),
+                                    "param_2" : ocommand.get("param_2"),
+                                    "param_3" : ocommand.get("param_3"),
+                                    "param_4" : ocommand.get("param_4")})
+                            elif otag == "MovePositionLives":
+                                inobject.append({"ocommande" : "movePositionLives",
+                                    "param" : ocommand.get("param"),
+                                    "param_1" : ocommand.get("param_1")})
+                            elif otag == "EndAnimation":
+                                inobject.append({"ocommande" : "endAnimation"})
+                            elif otag == "SlidePositionOffest":
+                                inobject.append({"ocommande" : "slidePositionOffset",
+                                    "param" : ocommand.get("param"),
+                                    "x" : ocommand.get("x"),
+                                    "y" : ocommand.get("y")})
+                            elif otag == "camera_SetMyself":
+                                inobject.append({"ocommande" : "cameraSetMyself"})
                             else:
                                 print("erreur : commande d'object inconnue : " + otag)
                                 inobject.append({"ocommande" : "inconnu"})
                         obj = {"commande" : "object",
                                "objectid" : command.get("objectid"),
-                               "in" : inobject}#TODO : in
+                               "in" : inobject}
                         funcl.append(obj)
                     elif tag == "se_Play":
                         obj = {"commande" : "sePlay",
