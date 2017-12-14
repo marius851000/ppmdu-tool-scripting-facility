@@ -395,7 +395,7 @@ def getData(file):
                                     "param_1" : ocommand.get("param_1")})
                             elif otag == "EndAnimation":
                                 inobject.append({"ocommande" : "endAnimation"})
-                            elif otag == "SlidePositionOffest":
+                            elif otag == "SlidePositionOffset":
                                 inobject.append({"ocommande" : "slidePositionOffset",
                                     "param" : ocommand.get("param"),
                                     "x" : ocommand.get("x"),

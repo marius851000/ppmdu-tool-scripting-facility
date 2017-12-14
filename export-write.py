@@ -333,7 +333,7 @@ def toCode(fonction):
                     elif ocommande == "endAnimation":
                         rendu = rendu + deb + deb + "endAnimation\n"
                     elif ocommande == "slidePositionOffset":
-                        rendu = rendu + deb + deb + "slidePositionOffset " + comm["param"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
+                        rendu = rendu + deb + deb + "slidePositionOffset " + ocomm["param"] + ", x = " + ocomm["x"] + ", y = " + ocomm["y"] + "\n"
                     elif ocommande == "cameraSetMyself":
                         rendu = rendu + deb + deb + "cameraSetMyself\n"
                     else:
