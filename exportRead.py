@@ -1,6 +1,6 @@
 from lxml import etree
 def getData(file):
-    uncompilerversion = "0.2.0"
+    uncompilerversion = "0.2.1"
     temp = open(file,"r")
     xml = temp.read()
     temp.close()
