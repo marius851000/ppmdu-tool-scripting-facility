@@ -68,11 +68,6 @@ def getData(file):
                         obj = {"commande" : "supervisionActing",
                                "layerid" : command.get("layerid")}
                         funcl.append(obj)
-                    elif tag == "performer":
-                        obj = {"commande" : "performer",
-                               "performerid" : command.get("performerid"),
-                               "in" : "TODO"}#TODO : in
-                        funcl.append(obj)
                     elif tag == "bgm_PlayFadeIn":
                         obj = {"commande" : "bgmPlayFadeIn",
                                "bgm" : command.get("bgm"),
@@ -409,6 +404,63 @@ def getData(file):
                                "objectid" : command.get("objectid"),
                                "in" : inobject}
                         funcl.append(obj)
+                    elif tag == "performer":
+                        inobject = []
+                        for pcommand in command:
+                            ptag = pcommand.tag
+                            if ptag == "camera_SetMyself":
+                                inobject.append({"pcommande" : "cameraSetMyself"})
+                            elif ptag == "SetEffect":
+                                inobject.append({"pcommande" : "setEffect",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1")})
+                            elif ptag == "MovePositionOffset":
+                                #there are two type:
+                                #param, x, y
+                                #param, param_1, param_2, param_3, param_4
+                                inobject.append({"pcommande" : "movePositionOffset",
+                                    "param" : pcommand.get("param"),
+                                    "x" : pcommand.get("x"),
+                                    "y" : pcommand.get("y"),
+                                    "param_1" : pcommand.get("param_1"),#special type
+                                    "param_2" : pcommand.get("param_2"),#idem
+                                    "param_3" : pcommand.get("param_3"),#idem
+                                    "param_4" : pcommand.get("param_4")})#idem
+                            elif ptag == "MovePositionMark":
+                                inobject.append({"pcommande":"movePositionMark",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1"),
+                                    "param_2" : pcommand.get("param_2"),
+                                    "x" : pcommand.get("x"),
+                                    "y" : pcommand.get("y")})
+                            elif ptag == "Move2PositionOffset":
+                                inobject.append({"pcommande" : "move2PositionOffset",
+                                    "param" : pcommand.get("param"),
+                                    "x" : pcommand.get("x"),
+                                    "y" : pcommand.get("y")})
+                            elif ptag == "SetPositionLives":
+                                inobject.append({"pcommande" : "setPositionLives",
+                                    "param" : pcommand.get("param")})
+                            elif ptag == "WaitEffect":
+                                inobject.append({"pcommande" : "waitEffect"})
+                            elif ptag == "SetPositionMark":
+                                inobject.append({"pcommande" : "setPositionMark",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1"),
+                                    "param_2" : pcommand.get("param_2"),
+                                    "param_3" : pcommand.get("param_3")})
+                            elif ptag == "MovePositionLives":
+                                inobject.append({"pcommande" : "movePositionLives",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1")})
+                            else:
+                                print("erreur : commande de performer inconnue : " + ptag)
+                                inobject.append({"pcommande" : "inconnu"})
+                        obj = {"commande" : "performer",
+                               "performerid" : command.get("performerid"),
+                               "in" : inobject}
+                        funcl.append(obj)
+
                     elif tag == "se_Play":
                         obj = {"commande" : "sePlay",
                                "param" : command.get("param")}

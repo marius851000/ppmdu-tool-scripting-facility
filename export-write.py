@@ -228,9 +228,6 @@ def toCode(fonction):
                 rendu = rendu + deb + "back2SetGround " + comm["levelid"] + "\n"
             elif commande == "supervisionActing":
                 rendu = rendu + deb + "supervisionActing " + comm["layerid"] + "\n"
-            elif commande == "performer":
-                rendu = rendu + deb + "performer " + comm["performerid"] + ":\n"
-                rendu = rendu + deb + deb + "TODO\n"
             elif commande == "screen2FadeIn":
                 if comm["bool"] == "1":
                     boole = "True"
@@ -342,6 +339,36 @@ def toCode(fonction):
                         print(ocomm)
                         if _stopOnError:
                             errore()
+            elif commande == "performer":#performer
+                rendu = rendu + deb + "performer " + comm["performerid"] + ":\n"
+                for pcomm in comm["in"]:
+                    pcommande = pcomm["pcommande"]
+                    if pcommande == "cameraSetMyself":
+                        rendu = rendu + deb + deb + "cameraSetMyself\n"
+                    elif pcommande == "setEffect":
+                        rendu = rendu + deb + deb + "setEffect " + pcomm["param"] + ", " + pcomm["param_1"] + "\n"
+                    elif pcommande == "movePositionOffset":
+                        if type(pcomm["x"])) == NoneType:
+                            rendu = rendu + deb + deb + "movePositionOffset " + pcomm["param"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
+                    elif pcommande == "movePositionMark":
+                        rendu = rendu + deb + deb + "movePositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
+                    elif pcommande == "move2PositionOffset":
+                        rendu = rendu + deb + deb + "move2PositionOffset " + pcomm["param"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
+                    elif pcommande == "setPositionLives":
+                        rendu = rendu + deb + deb + "setPositionLives " + pcomm["param"] + "\n"
+                    elif pcommande == "waitEffect":
+                        rendu = rendu + deb + deb + "waitEffect\n"
+                    elif pcommande == "setPositionMark":
+                        rendu = rendu + deb + deb + "setPositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + ", " + pcomm["param_3"] + "\n"
+                    elif pcommande == "movePositionLives":
+                        rendu = rendu + deb + deb + "movePositionLives " + pcomm["param"] + ", " + pcomm["param_1"] + "\n"
+                    else:
+                        rendu = rendu + deb + deb + "performer inconnu\n"
+                        print("erreur : performer non traité : " + pcommande)
+                        print(pcomm)
+                        if _stopOnError:
+                            errore()
+
 
             elif commande == "cameraSetEffect":
                 rendu = rendu + deb + "cameraSetEffect " + comm["param"] + ", " + comm["param_1"] + ", " + comm["param_2"] + "\n"
