@@ -453,6 +453,38 @@ def getData(file):
                                 inobject.append({"pcommande" : "movePositionLives",
                                     "param" : pcommand.get("param"),
                                     "param_1" : pcommand.get("param_1")})
+                            elif ptag == "SlidePositionOffset":
+                                inobject.append({"pcommande" : "slidePositionOffset",
+                                    "param" : pcommand.get("param"),
+                                    "x" : pcommand.get("x"),
+                                    "y" : pcommand.get("y")})
+                            elif ptag == "SetPositionMark":
+                                inobject.append({"pcommande" : "setPositionMark",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1")})
+                            elif ptag == "Move2PositionMark":
+                                inobject.append({"pcommande" : "move2PositionMark",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1"),
+                                    "param_2" : pcommand.get("param_2"),
+                                    "param_3" : pcommand.get("param_3"),
+                                    "param_4" : pcommand.get("param_4")})
+                            elif ptag == "SetPositionOffset":
+                                inobject.append({"pcommande" : "setPositionOffset",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1")})
+                            elif ptag == "ResumeEffect":
+                                inobject.append({"pcommande" : "resumeEffect",
+                                    "param" : pcommand.get("param")})
+                            elif ptag == "SetPosition":
+                                inobject.append({"pcommande" : "setPosition",
+                                    "param" : pcommand.get("param"),
+                                    "param_1" : pcommand.get("param_1")})
+                            elif ptag == "MovePosition":
+                                inobject.append({"pcommande" : "movePosition",
+                                    "param" : pcommand.get("param"),
+                                    "x" : pcommand.get("x"),
+                                    "y" : pcommand.get("y")})
                             else:
                                 print("erreur : commande de performer inconnue : " + ptag)
                                 inobject.append({"pcommande" : "inconnu"})

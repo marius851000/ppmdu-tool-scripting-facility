@@ -348,10 +348,17 @@ def toCode(fonction):
                     elif pcommande == "setEffect":
                         rendu = rendu + deb + deb + "setEffect " + pcomm["param"] + ", " + pcomm["param_1"] + "\n"
                     elif pcommande == "movePositionOffset":
-                        if type(pcomm["x"])) == NoneType:
+                        if type(pcomm["x"]) == str:
                             rendu = rendu + deb + deb + "movePositionOffset " + pcomm["param"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
+                        else:
+                            rendu = rendu + deb + deb + "movePositionOffset " + pcomm["param"] + "\n"
+                        # TODO: else
                     elif pcommande == "movePositionMark":
-                        rendu = rendu + deb + deb + "movePositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
+                        if type(pcomm["x"]) == str:
+                            rendu = rendu + deb + deb + "movePositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
+                        else:
+                            rendu = rendu + deb + deb + "movePositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + "\n"
+                        # TODO: else
                     elif pcommande == "move2PositionOffset":
                         rendu = rendu + deb + deb + "move2PositionOffset " + pcomm["param"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
                     elif pcommande == "setPositionLives":
@@ -362,6 +369,22 @@ def toCode(fonction):
                         rendu = rendu + deb + deb + "setPositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + ", " + pcomm["param_3"] + "\n"
                     elif pcommande == "movePositionLives":
                         rendu = rendu + deb + deb + "movePositionLives " + pcomm["param"] + ", " + pcomm["param_1"] + "\n"
+                    elif pcommande == "slidePositionOffset":
+                        rendu = rendu + deb + deb + "slidePositionOffset " + pcomm["param"] + ", x = " + pcomm["x"] + ", y = " + pcomm["y"] + "\n"
+                    elif pcommande == "setPositionMark":
+                        rendu = rendu + deb + deb + "setPositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + "\n"
+                    elif pcommande == "setPositionMark":
+                        rendu = rendu + deb + deb + "setPositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + ", " + pcomm["param_3"] + ", " + pcomm["param_4"] + "\n"
+                    elif pcommande == "resumeEffect":
+                        rendu = rendu + deb + deb + "resumeEffect " + pcomm["param"] + "\n"
+                    elif pcommande == "setPositionOffset":
+                        rendu = rendu + deb + deb + "setPositionOffset " + pcomm["param"] + ", " + pcomm["param_1"] + "\n"
+                    elif pcommande == "move2PositionMark":
+                        rendu = rendu + deb + deb + "move2PositionMark " + pcomm["param"] + ", " + pcomm["param_1"] + ", " + pcomm["param_2"] + ", " + pcomm["param_3"] + ", " + pcomm["param_4"] + "\n"
+                    elif pcommande == "setPosition":
+                        rendu = rendu + deb + deb + "setPosition " + pcomm["param"] + ", " + pcomm["param_1"] + "\n"
+                    elif pcommande == "movePosition":
+                        rendu = rendu + deb + deb + "movePosition " + pcomm["param"] + ", x = " + pcomm["x"] + ", " + pcomm["y"] + "\n"
                     else:
                         rendu = rendu + deb + deb + "performer inconnu\n"
                         print("erreur : performer non traité : " + pcommande)
